@@ -41,4 +41,22 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  isActive(page) {
+    /*let childNav = this.nav.getActiveChildNav();
+    // Tabs are a special case because they have their own navigation
+    if (childNav) {
+      console.log(childNav.title);
+      if (childNav.getSelected() && childNav.getSelected().root === page.component) {
+        console.log(childNav.getSelected().root);
+        return 'primary';
+      }
+      return;
+    }*/
+
+    if (this.nav.getActive() && this.nav.getActive().component === page.component) {
+      return 'primary';
+    }
+    return;
+  }
 }
