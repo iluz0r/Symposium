@@ -3,8 +3,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
+import { ProgramTab } from '../pages/programtab/programtab';
 import { ProgramPage } from '../pages/program/program';
-import { TabPage } from '../pages/program/program';
 import { PresentersPage } from '../pages/presenters/presenters';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -13,8 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     MyApp,
+    ProgramTab,
     ProgramPage,
-    TabPage,
     PresentersPage
   ],
   imports: [
@@ -24,8 +24,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    ProgramTab,
     ProgramPage,
-    TabPage,
     PresentersPage
   ],
   providers: [
