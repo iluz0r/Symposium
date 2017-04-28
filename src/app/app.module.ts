@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { ProgramPage } from '../pages/program/program';
+import { TabPage } from '../pages/program/program';
 import { PresentersPage } from '../pages/presenters/presenters';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -13,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     ProgramPage,
+    TabPage,
     PresentersPage
   ],
   imports: [
@@ -23,6 +25,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     ProgramPage,
+    TabPage,
     PresentersPage
   ],
   providers: [
