@@ -15,7 +15,7 @@ export class ProgramPage {
 @Component({
   template: `
     <ion-tabs tabsPlacement="top" color="primary">
-      <ion-tab tabTitle="May 14" [root]="rootPage"></ion-tab>
+      <ion-tab tabTitle="May 13" [root]="rootPage"></ion-tab>
       <ion-tab tabTitle="May 15" [root]="rootPage"></ion-tab>
       <ion-tab tabTitle="May 16" [root]="rootPage"></ion-tab>
       <ion-tab tabTitle="May 17" [root]="rootPage"></ion-tab>
