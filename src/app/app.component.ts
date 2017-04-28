@@ -43,17 +43,6 @@ export class MyApp {
   }
 
   isActive(page) {
-    /*let childNav = this.nav.getActiveChildNav();
-    // Tabs are a special case because they have their own navigation
-    if (childNav) {
-      console.log(childNav.title);
-      if (childNav.getSelected() && childNav.getSelected().root === page.component) {
-        console.log(childNav.getSelected().root);
-        return 'primary';
-      }
-      return;
-    }*/
-
     if (this.nav.getActive() && this.nav.getActive().component === page.component) {
       return 'primary';
     }
