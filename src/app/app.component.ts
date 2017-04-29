@@ -5,20 +5,24 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {ProgramTab} from '../pages/programtab/programtab';
 import {PresentersPage} from '../pages/presenters/presenters';
 import {DaysService} from '../providers/days-service';
+import {EventsService} from '../providers/events-service';
+import {SpeakersService} from '../providers/speakers-service';
+import {PresentersService} from '../providers/presenters-service';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [DaysService]
+  providers: [DaysService, EventsService]
 })
+
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = ProgramTab;
   pages: Array<{ title: string, component: any, icon: string }>;
   days: any;
+  events: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public daysService: DaysService) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public daysService: DaysService, public eventsService: EventsService) {
     this.initializeApp();
-
     this.pages = [
       {title: 'Program', component: ProgramTab, icon: 'calendar'},
       {title: 'Presenters', component: PresentersPage, icon: 'contacts'}
@@ -54,6 +58,13 @@ export class MyApp {
     this.daysService.load().then(data => {
       this.days = data;
       this.nav.push(ProgramTab, this.days);
+    });
+  }
+
+  loadEvents(){
+    this.eventsService.load().then(data => {
+      this.events = data;
+      this.nav.push(ProgramTab, this.events);
     });
   }
 }
