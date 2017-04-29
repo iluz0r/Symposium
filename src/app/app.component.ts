@@ -1,29 +1,30 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { PresentersPage } from '../pages/presenters/presenters';
-import { ProgramTab } from '../pages/programtab/programtab';
+import {Component, ViewChild} from '@angular/core';
+import {Nav, Platform} from 'ionic-angular';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {ProgramTab} from '../pages/programtab/programtab';
+import {PresentersPage} from '../pages/presenters/presenters';
+import {DaysService} from '../providers/days-service';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [DaysService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
   rootPage: any = ProgramTab;
+  pages: Array<{ title: string, component: any, icon: string }>;
+  days: any;
 
-  pages: Array<{title: string, component: any, icon: string}>;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public daysService: DaysService) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Program', component: ProgramTab, icon: 'calendar' },
-      { title: 'Presenters', component: PresentersPage, icon: 'contacts' }
+      {title: 'Program', component: ProgramTab, icon: 'calendar'},
+      {title: 'Presenters', component: PresentersPage, icon: 'contacts'}
     ];
 
+    this.loadDays();
   }
 
   initializeApp() {
@@ -36,9 +37,10 @@ export class MyApp {
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+    if (page.component === ProgramTab) {
+      this.nav.push(ProgramTab, this.days);
+    }
   }
 
   isActive(page) {
@@ -46,5 +48,12 @@ export class MyApp {
       return 'primary';
     }
     return;
+  }
+
+  loadDays() {
+    this.daysService.load().then(data => {
+      this.days = data;
+      this.nav.push(ProgramTab, this.days);
+    });
   }
 }
