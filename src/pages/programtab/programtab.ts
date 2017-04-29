@@ -11,9 +11,10 @@ import {DaysService} from '../../providers/days-service';
 export class ProgramTab {
 
   rootPage = ProgramPage;
-  public days: any;
+  days: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public daysService: DaysService) {
+    this.loadDays();
   }
 
   loadDays() {
@@ -23,7 +24,6 @@ export class ProgramTab {
   }
 
   ionViewDidLoad() {
-    this.loadDays();
   }
 
 }

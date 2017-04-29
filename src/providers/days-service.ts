@@ -22,7 +22,7 @@ export class DaysService {
     }
 
     return new Promise(resolve => {
-      this.http.get('http://localhost:8080/Symposium/resources/days')
+      this.http.get('http://193.205.163.223:8080/Symposium/resources/days')
         .map(res => res.json())
         .subscribe(data => {
           this.result = data;
