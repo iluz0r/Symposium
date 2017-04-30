@@ -9,10 +9,10 @@ import {ProgramPage} from '../program/program';
 export class ProgramTab {
 
   rootPage = ProgramPage;
-  days: any;
+  dates: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.days = Array.from(navParams.data);
+    this.dates = Array.from(navParams.data);
   }
 
 }

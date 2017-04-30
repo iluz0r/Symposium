@@ -4,31 +4,32 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {ProgramTab} from '../pages/programtab/programtab';
 import {PresentersPage} from '../pages/presenters/presenters';
-import {DaysService} from '../providers/days-service';
+import {DatesService} from '../providers/dates-service';
 import {EventsService} from '../providers/events-service';
 import {SpeakersService} from '../providers/speakers-service';
 import {PresentersService} from '../providers/presenters-service';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [DaysService, EventsService]
+  providers: [DatesService, EventsService]
 })
 
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = ProgramTab;
   pages: Array<{ title: string, component: any, icon: string }>;
-  days: any;
+  dates: any;
   events: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public daysService: DaysService, public eventsService: EventsService) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService) {
     this.initializeApp();
+
     this.pages = [
       {title: 'Program', component: ProgramTab, icon: 'calendar'},
       {title: 'Presenters', component: PresentersPage, icon: 'contacts'}
     ];
 
-    this.loadDays();
+    this.loadDates();
   }
 
   initializeApp() {
@@ -43,7 +44,7 @@ export class MyApp {
   openPage(page) {
     this.nav.setRoot(page.component);
     if (page.component === ProgramTab) {
-      this.nav.push(ProgramTab, this.days);
+      this.nav.push(ProgramTab, this.dates);
     }
   }
 
@@ -54,10 +55,10 @@ export class MyApp {
     return;
   }
 
-  loadDays() {
-    this.daysService.load().then(data => {
-      this.days = data;
-      this.nav.push(ProgramTab, this.days);
+  loadDates() {
+    this.datesService.load().then(data => {
+      this.dates = data;
+      this.nav.push(ProgramTab, this.dates);
     });
   }
 
