@@ -22,7 +22,7 @@ export class PresentersService {
     }
 
     return new Promise(resolve => {
-      this.http.get('http://193.205.163.223:8080/Symposium/resources/presenters-page')
+      this.http.get('http://193.205.163.223:8080/Symposium/resources/presenters')
         .map(res => res.json())
         .subscribe(data => {
           this.result = data;
