@@ -43,7 +43,7 @@ export class MyApp {
   openPage(page) {
     this.nav.setRoot(page.component);
     if (page.component === ProgramTab) {
-      this.nav.push(ProgramTab, {programDates: this.dates, programEvents: this.events});
+      this.nav.push(ProgramTab, {programDates: this.dates, programEvents: this.events}, {animate:false});
     }
   }
 
@@ -64,7 +64,7 @@ export class MyApp {
   loadEvents() {
     this.eventsService.load().then(data => {
       this.events = data;
-      this.nav.push(ProgramTab, {programDates: this.dates, programEvents: this.events});
+      this.nav.push(ProgramTab, {programDates: this.dates, programEvents: this.events}, {animate: false});
     });
   }
 }

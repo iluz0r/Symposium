@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 
 @Component({
   selector: 'page-program',
@@ -7,7 +7,12 @@ import {NavController} from 'ionic-angular';
 })
 export class ProgramPage {
 
-  constructor(public navCtrl: NavController) {
+  date: any;
+  events: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.date = navParams.get("date");
+    this.events = navParams.get("programEvents");
   }
 
 }

@@ -8,4 +8,7 @@
 </ion-header>
 
 <ion-content>
+  <ng-container *ngFor="let e of events">
+    <p *ngIf="e.date === date">{{e.name}}</p>
+  </ng-container>
 </ion-content>
