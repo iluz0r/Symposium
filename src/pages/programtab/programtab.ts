@@ -10,9 +10,11 @@ export class ProgramTab {
   rootPage = ProgramPage;
   dates: any;
   events: any;
+  locations: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.dates = navParams.get("programDates");
     this.events = navParams.get("programEvents");
+    this.locations = navParams.get("programLocations");
   }
 }

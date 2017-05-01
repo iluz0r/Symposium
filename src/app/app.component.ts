@@ -6,12 +6,13 @@ import {ProgramTab} from '../pages/programtab/programtab';
 import {PresentersPage} from '../pages/presenters-page/presenters-page';
 import {DatesService} from '../providers/dates-service';
 import {EventsService} from '../providers/events-service';
+import {LocationsService} from '../providers/locations-service';
 import {SpeakersService} from '../providers/speakers-service';
 import {PresentersService} from '../providers/presenters-service';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [DatesService, EventsService]
+  providers: [DatesService, EventsService, LocationsService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -19,8 +20,9 @@ export class MyApp {
   pages: Array<{ title: string, component: any, icon: string }>;
   dates: any;
   events: any;
+  locations: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService, public locationsService: LocationsService) {
     this.initializeApp();
 
     this.pages = [
@@ -28,7 +30,7 @@ export class MyApp {
       {title: 'Presenters', component: PresentersPage, icon: 'contacts'}
     ];
 
-    this.loadProgram();
+    this.loadData();
   }
 
   initializeApp() {
@@ -54,7 +56,7 @@ export class MyApp {
     return;
   }
 
-  loadProgram() {
+  loadData() {
     this.datesService.load().then(data => {
       this.dates = data;
       this.loadEvents();
@@ -64,7 +66,14 @@ export class MyApp {
   loadEvents() {
     this.eventsService.load().then(data => {
       this.events = data;
-      this.nav.push(ProgramTab, {programDates: this.dates, programEvents: this.events}, {animate: false});
+      this.loadLocations();
+    });
+  }
+
+  loadLocations() {
+    this.locationsService.load().then(data => {
+      this.locations = data;
+      this.nav.push(ProgramTab, {programDates: this.dates, programEvents: this.events, programLocations: this.locations}, {animate: false});
     });
   }
 }
