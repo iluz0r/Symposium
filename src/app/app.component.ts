@@ -3,7 +3,7 @@ import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {ProgramTab} from '../pages/programtab/programtab';
-import {PresentersPage} from '../pages/presenters/presenters';
+import {PresentersPage} from '../pages/presenters-page/presenters-page';
 import {DatesService} from '../providers/dates-service';
 import {EventsService} from '../providers/events-service';
 import {SpeakersService} from '../providers/speakers-service';
@@ -13,7 +13,6 @@ import {PresentersService} from '../providers/presenters-service';
   templateUrl: 'app.html',
   providers: [DatesService, EventsService]
 })
-
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = ProgramTab;
@@ -29,7 +28,7 @@ export class MyApp {
       {title: 'Presenters', component: PresentersPage, icon: 'contacts'}
     ];
 
-    this.loadDates();
+    this.loadProgram();
   }
 
   initializeApp() {
@@ -44,7 +43,7 @@ export class MyApp {
   openPage(page) {
     this.nav.setRoot(page.component);
     if (page.component === ProgramTab) {
-      this.nav.push(ProgramTab, this.dates);
+      this.nav.push(ProgramTab, {programDates: this.dates, programEvents: this.events});
     }
   }
 
@@ -55,17 +54,17 @@ export class MyApp {
     return;
   }
 
-  loadDates() {
+  loadProgram() {
     this.datesService.load().then(data => {
       this.dates = data;
-      this.nav.push(ProgramTab, this.dates);
+      this.loadEvents();
     });
   }
 
-  loadEvents(){
+  loadEvents() {
     this.eventsService.load().then(data => {
       this.events = data;
-      this.nav.push(ProgramTab, this.events);
+      this.nav.push(ProgramTab, {programDates: this.dates, programEvents: this.events});
     });
   }
 }

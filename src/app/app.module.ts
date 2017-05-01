@@ -1,15 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpModule} from '@angular/http';
+import {ErrorHandler, NgModule} from '@angular/core';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 
-import { MyApp } from './app.component';
-import { ProgramTab } from '../pages/programtab/programtab';
-import { ProgramPage } from '../pages/program/program';
-import { PresentersPage } from '../pages/presenters/presenters';
+import {MyApp} from './app.component';
+import {ProgramTab} from '../pages/programtab/programtab';
+import {ProgramPage} from '../pages/program-page/program-page';
+import {PresentersPage} from '../pages/presenters-page/presenters-page';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
 @NgModule({
   declarations: [
@@ -36,4 +36,5 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+}
