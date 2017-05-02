@@ -3,13 +3,13 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
-  Generated class for the LocationsService provider.
+  Generated class for the PapersService provider.
 
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class LocationsService {
+export class PapersService {
 
   result: any;
 
@@ -22,7 +22,7 @@ export class LocationsService {
     }
 
     return new Promise(resolve => {
-      this.http.get('http://193.205.163.223:8080/Symposium/resources/locations')
+      this.http.get('http://193.205.163.223:8080/Symposium/resources/papers')
         .map(res => res.json())
         .subscribe(data => {
           this.result = data;

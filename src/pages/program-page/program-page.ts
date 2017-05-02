@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavParams} from 'ionic-angular';
 
 @Component({
   selector: 'page-program',
@@ -10,29 +10,49 @@ export class ProgramPage {
   date: any;
   events: any;
   locations: any;
-  eventsObject: any;
+  eventsArray: any;
+  papers: any;
+  presenters: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navParams: NavParams) {
     this.date = navParams.get("date");
     this.events = navParams.get("programEvents");
     this.locations = navParams.get("programLocations");
-    this.eventsObject = [];
+    this.papers = navParams.get("programPapers");
+    this.presenters = navParams.get("programPresenters");
+    this.eventsArray = [];
 
-    this.makeEventsObject();
+    this.makeEventsArray();
   }
 
-  makeEventsObject() {
-    let loc;
+  makeEventsArray() {
+    let loc, papersInfo, pres;
 
-    for(let e of this.events) {
-      if(e.date == this.date) {
-        for(let l of this.locations) {
-          if(e.locationID == l.ID) {
+    for (let e of this.events) {
+      if (e.date == this.date) {
+        for (let l of this.locations) {
+          if (e.locationID == l.ID) {
             loc = l;
             break;
           }
         }
-        this.eventsObject.push({event : e, location: loc});
+        if (e.type != '2') {
+          papersInfo = [];
+          for (let p of this.papers) {
+            if (p.eventID == e.ID) {
+              pres = [];
+              for (let pr of this.presenters) {
+                for (let paperID of pr.papersID) {
+                  if (paperID == p.ID) {
+                    pres.push(pr);
+                  }
+                }
+              }
+              papersInfo.push({paper: p, presenters: pres});
+            }
+          }
+        }
+        this.eventsArray.push({event: e, location: loc, papersInfo: papersInfo});
       }
     }
   }

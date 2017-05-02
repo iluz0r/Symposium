@@ -7,26 +7,30 @@ import {PresentersPage} from '../pages/presenters-page/presenters-page';
 import {DatesService} from '../providers/dates-service';
 import {EventsService} from '../providers/events-service';
 import {LocationsService} from '../providers/locations-service';
+import {PapersService} from '../providers/papers-service';
+import {PresentersService} from '../providers/presenters-service'
 import {SpeakersService} from '../providers/speakers-service';
-import {PresentersService} from '../providers/presenters-service';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [DatesService, EventsService, LocationsService]
+  providers: [DatesService, EventsService, LocationsService, PapersService, PresentersService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = ProgramTab;
+  rootPage: any;
   pages: Array<{ title: string, component: any, icon: string }>;
   dates: any;
   events: any;
   locations: any;
+  papers: any;
+  presenters: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService, public locationsService: LocationsService) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService, public locationsService: LocationsService, public papersService: PapersService, public presentersService: PresentersService) {
     this.initializeApp();
 
+    this.rootPage = ProgramTab;
     this.pages = [
-      {title: 'Program', component: ProgramTab, icon: 'calendar'},
+      {title: 'Schedule', component: ProgramTab, icon: 'calendar'},
       {title: 'Presenters', component: PresentersPage, icon: 'contacts'}
     ];
 
@@ -45,7 +49,11 @@ export class MyApp {
   openPage(page) {
     this.nav.setRoot(page.component);
     if (page.component === ProgramTab) {
-      this.nav.push(ProgramTab, {programDates: this.dates, programEvents: this.events, programLocations: this.locations}, {animate:false});
+      this.nav.push(ProgramTab, {
+        programDates: this.dates,
+        programEvents: this.events,
+        programLocations: this.locations
+      }, {animate: false});
     }
   }
 
@@ -73,7 +81,27 @@ export class MyApp {
   loadLocations() {
     this.locationsService.load().then(data => {
       this.locations = data;
-      this.nav.push(ProgramTab, {programDates: this.dates, programEvents: this.events, programLocations: this.locations}, {animate: false});
+      this.loadPapers();
+    });
+  }
+
+  loadPapers() {
+    this.papersService.load().then(data => {
+        this.papers = data;
+        this.loadPresenters();
+      }
+    );
+  }
+
+  loadPresenters() {
+    this.presentersService.load().then(data => {
+      this.presenters = data;
+      this.nav.push(ProgramTab, {
+        programDates: this.dates,
+        programEvents: this.events,
+        programLocations: this.locations,
+        programPapers: this.papers, programPresenters: this.presenters
+      }, {animate: false});
     });
   }
 }
