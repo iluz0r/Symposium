@@ -8,14 +8,10 @@
 </ion-header>
 
 <ion-content>
-  <ng-container *ngFor="let e of events">
-    <p *ngIf="e.date == date">{{e.startTime}}</p>
-    <p *ngIf="e.date == date">{{e.startTime}} - {{e.endTime}}</p>
-    <p *ngIf="e.date == date">{{e.name}}</p>
-    <ng-container *ngIf="e.date == date">
-      <ng-container *ngFor="let l of locations">
-        <p *ngIf="e.locationID == l.ID">{{l.name}}</p>
-      </ng-container>
-    </ng-container>
+  <ng-container *ngFor="let e of eventsObject">
+    <p>{{e.event.startTime}}</p>
+    <p>{{e.event.startTime}} - {{e.event.endTime}}</p>
+    <p>{{e.event.name}}</p>
+    <p>{{e.location.name}}</p>
   </ng-container>
 </ion-content>

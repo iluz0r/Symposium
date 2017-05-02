@@ -45,7 +45,7 @@ export class MyApp {
   openPage(page) {
     this.nav.setRoot(page.component);
     if (page.component === ProgramTab) {
-      this.nav.push(ProgramTab, {programDates: this.dates, programEvents: this.events}, {animate:false});
+      this.nav.push(ProgramTab, {programDates: this.dates, programEvents: this.events, programLocations: this.locations}, {animate:false});
     }
   }
 

@@ -10,23 +10,31 @@ export class ProgramPage {
   date: any;
   events: any;
   locations: any;
+  eventsObject: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.date = navParams.get("date");
     this.events = navParams.get("programEvents");
     this.locations = navParams.get("programLocations");
+    this.eventsObject = [];
 
-    // I DATI POTREI ORDINARLI QUI.. NEL SENSO CHE POTREI DEFINIRE UN VETTORE DI EVENTS A CUI POTREI AGGIUNGERE LA LOCATION CORRISPONDENTE COME DI SEGUITO
-    /*
-    this.events = [];
+    this.makeEventsObject();
+  }
+
+  makeEventsObject() {
+    let loc;
+
     for(let e of this.events) {
-      for(let l of this.locations) {
-        if(e.locationID == l.ID) {
-          this.events.add({event : e, location: l});
+      if(e.date == this.date) {
+        for(let l of this.locations) {
+          if(e.locationID == l.ID) {
+            loc = l;
+            break;
+          }
         }
+        this.eventsObject.push({event : e, location: loc});
       }
     }
-    */
   }
 
 }
