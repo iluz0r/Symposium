@@ -9,15 +9,51 @@
 
 <ion-content>
   <ng-container *ngFor="let e of eventsArray">
-    <p>{{e.event.startTime}}</p>
-    <p>{{e.event.startTime}} - {{e.event.endTime}}</p>
-    <p>{{e.event.name}}</p>
-    <p>{{e.location.name}}</p>
+    <ion-item-divider sticky>
+      <ion-label>
+        {{e.event.startTime}}
+      </ion-label>
+    </ion-item-divider>
+    <ion-card #card [class]="e.event.type !== 2 ? card.className.split(' ')[0] + ' ' + card.className.split(' ')[1] + ' pres' : card.className">
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-3>
+                <div id="time">
+                  <ion-row>
+                    {{e.event.startTime}}
+                  </ion-row>
+                  <ion-row>
+                    {{e.event.endTime}}
+                  </ion-row>
+                </div>
+              </ion-col>
+              <ion-col>
+                <ion-card-title>{{e.event.name}}</ion-card-title>
+                <p>Location: {{e.location.name}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+    </ion-card>
     <ng-container *ngFor="let paperInfo of e.papersInfo">
-      <p>{{paperInfo.paper.title}}</p>
-      <ng-container *ngFor="let presenter of paperInfo.presenters">
-        <p>{{presenter.firstName}} {{presenter.lastName}}</p>
-      </ng-container>
+      <ion-card>
+        <ion-card-content>
+          <ion-card-header>
+            {{paperInfo.paper.title}}
+          </ion-card-header>
+        </ion-card-content>
+      </ion-card>
     </ng-container>
   </ng-container>
 </ion-content>
+
+<!-- <p>{{e.event.startTime}}</p>
+<p>{{e.event.startTime}} - {{e.event.endTime}}</p>
+<p>{{e.event.name}}</p>
+<p>{{e.location.name}}</p>
+<ng-container *ngFor="let paperInfo of e.papersInfo">
+  <p>{{paperInfo.paper.title}}</p>
+  <ng-container *ngFor="let presenter of paperInfo.presenters">
+    <p>{{presenter.firstName}} {{presenter.lastName}}</p>
+    -->

@@ -52,7 +52,8 @@ export class MyApp {
       this.nav.push(ProgramTab, {
         programDates: this.dates,
         programEvents: this.events,
-        programLocations: this.locations
+        programLocations: this.locations,
+        programPapers: this.papers, programPresenters: this.presenters
       }, {animate: false});
     }
   }

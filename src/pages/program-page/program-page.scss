@@ -1,2 +1,40 @@
 page-program {
+
+  .grid {
+    padding: 0px;
+  }
+
+  #time {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .card-title {
+    font-size: 1.9rem;
+    font-weight: 500;
+  }
+  .scroll-content {
+    background-color: #f7f7f7;
+  }
+
+  .item-divider {
+    background-color: #f7f7f7;
+  }
+
+  ion-label {
+    font-weight: 500;
+  }
+
+  .pres.card-md {
+    margin: 10px 10px -1px 10px;
+  }
+
+  .pres.card-ios {
+    margin: 12px 12px -1px 12px;
+  }
+
+  .card-header{
+    padding: 16px 16px 16px 0px;
+  }
 }
