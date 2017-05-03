@@ -4,16 +4,22 @@ page-program {
     padding: 0px;
   }
 
-  #time {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+  #outertime {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #innertime {
+    align-self: center;
+    width: 100%;
   }
 
   .card-title {
     font-size: 1.9rem;
     font-weight: 500;
   }
+
   .scroll-content {
     background-color: #f7f7f7;
   }
@@ -34,7 +40,8 @@ page-program {
     margin: 12px 12px -1px 12px;
   }
 
-  .card-header{
+  .card-header {
     padding: 16px 16px 16px 0px;
   }
+
 }

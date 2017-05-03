@@ -7,34 +7,37 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="aligner">
   <ng-container *ngFor="let e of eventsArray">
     <ion-item-divider sticky>
       <ion-label>
         {{e.event.startTime}}
       </ion-label>
     </ion-item-divider>
-    <ion-card #card [class]="e.event.type !== 2 ? card.className.split(' ')[0] + ' ' + card.className.split(' ')[1] + ' pres' : card.className">
-        <ion-card-content>
-          <ion-grid>
-            <ion-row>
-              <ion-col col-3>
-                <div id="time">
-                  <ion-row>
+    <ion-card #card
+              [class]="e.event.type !== 2 ? card.className.split(' ')[0] + ' ' + card.className.split(' ')[1] + ' pres' : card.className">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-3>
+              <div id="outertime">
+                <div id="innertime">
+                  <p>
                     {{e.event.startTime}}
-                  </ion-row>
-                  <ion-row>
+                  </p>
+                  <p>
                     {{e.event.endTime}}
-                  </ion-row>
+                  </p>
                 </div>
-              </ion-col>
-              <ion-col>
-                <ion-card-title>{{e.event.name}}</ion-card-title>
-                <p>Location: {{e.location.name}}</p>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
+              </div>
+            </ion-col>
+            <ion-col>
+              <ion-card-title>{{e.event.name}}</ion-card-title>
+              <p>Location: {{e.location.name}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
     </ion-card>
     <ng-container *ngFor="let paperInfo of e.papersInfo">
       <ion-card>
