@@ -104,7 +104,7 @@ export class MyApp {
   loadPresenters() {
     this.presentersService.load().then(data => {
       this.presenters = data;
-      this.nav.push(ProgramTab, {
+      this.nav.setRoot(ProgramTab, {
         programDates: this.dates,
         programEvents: this.events,
         programLocations: this.locations,
@@ -119,7 +119,7 @@ export class MyApp {
       id: 1,
       title: 'Hey, la prima notifica',
       text: 'Esempio di prima notifica',
-      sound: 'file://res/sounds/whistle.mp3',
+      sound: 'file://assets/sound/whistle.mp3',
       badge: 1,
       data: new Date(new Date().getTime() + 60),
       led: '0000FF',
