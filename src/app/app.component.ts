@@ -1,5 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
+//import {LocalNotifications} from '@ionic-native/local-notifications';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {ProgramTab} from '../pages/programtab/programtab';
@@ -12,6 +13,7 @@ import {PresentersService} from '../providers/presenters-service';
 import {SpeakersService} from '../providers/speakers-service';
 
 @Component({
+  selector: 'page_app',
   templateUrl: 'app.html',
   providers: [DatesService, EventsService, LocationsService, PapersService, PresentersService]
 })
@@ -35,6 +37,7 @@ export class MyApp {
     ];
 
     this.loadData();
+    //this.notifications();
   }
 
   initializeApp() {
@@ -55,8 +58,8 @@ export class MyApp {
         programPapers: this.papers, programPresenters: this.presenters
       });
     }
-    else if(page.component === PresentersPage){
-      this.nav.setRoot(PresentersPage,{
+    else if (page.component === PresentersPage) {
+      this.nav.setRoot(PresentersPage, {
         presentersList: this.presenters
       });
     }
@@ -109,4 +112,17 @@ export class MyApp {
       }, {animate: false});
     });
   }
+
+
+  /*notifications() {
+    this.localNotifications.schedule({
+      id: 1,
+      title: 'Hey, la prima notifica',
+      text: 'Esempio di prima notifica',
+      sound: 'file://res/sounds/whistle.mp3',
+      badge: 1,
+      data: new Date(new Date().getTime() + 3600),
+      led: '0000FF',
+    });
+  }*/
 }

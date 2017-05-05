@@ -5,12 +5,16 @@ page-presenters {
     height: 60px;
   }
 
-  .label-ios, .label-md{
+  .label-ios, .label-md {
     white-space: initial;
   }
 
   .item-md.item-block .item-inner, .item-ios.item-block .item-inner {
     padding-right: inherit;
+  }
+
+  .toolbar .searchbar-ios .searchbar-input, .toolbar .searchbar-md .searchbar-input {
+    background: #f7f7f7;;
   }
 
 }

@@ -7,7 +7,8 @@ import {MyApp} from './app.component';
 import {ProgramTab} from '../pages/programtab/programtab';
 import {ProgramPage} from '../pages/program-page/program-page';
 import {PresentersPage} from '../pages/presenters-page/presenters-page';
-import {PresenterInfoPage} from "../pages/presenterinfo-page/presenterinfo-page";
+import {PresenterInfoPage} from '../pages/presenterinfo-page/presenterinfo-page';
+import {PopoverSortPage} from '../pages/popoversort-page/popoversort-page';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -19,7 +20,8 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     ProgramTab,
     ProgramPage,
     PresentersPage,
-    PresenterInfoPage
+    PresenterInfoPage,
+    PopoverSortPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     ProgramTab,
     ProgramPage,
     PresentersPage,
-    PresenterInfoPage
+    PresenterInfoPage,
+    PopoverSortPage
   ],
   providers: [
     StatusBar,

@@ -4,38 +4,52 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Presenters</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openPopover($event)">
+        <ion-icon name="more" item-right></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-searchbar
+      [(ngModel)]="queryText"
+      (ionInput)="updatePresentersList()"
+      placeholder="Search">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let p of presentersArray">
-    <ion-item-divider sticky>
-      <ion-avatar item-left>
-        <img [src]="p.pres.pictureURL == '' ? defaultAvatar : p.pres.pictureURL">
-      </ion-avatar>
-      <h2><b>{{p.pres.firstName}} {{p.pres.lastName}}</b></h2>
-      <ion-badge item-right color="primary">H-index {{p.pres.hindex}}</ion-badge>
-    </ion-item-divider>
-    <ion-item *ngIf="p.affs.length != 0">
-      <ion-icon name="school" item-left></ion-icon>
-      <ng-container *ngFor="let a of p.affs">
-        <p *ngIf="p.affs.indexOf(a)!=p.affs.length-1">{{a.name + " ,"}}</p>
-        <p *ngIf="p.affs.indexOf(a)==p.affs.length-1">{{a.name}}</p>
-      </ng-container>
-    </ion-item>
-    <ion-item *ngIf="p.pres.email != ''">
-      <ion-icon name="mail" item-left></ion-icon>
-      <p>{{p.pres.email}}</p>
-    </ion-item>
-    <ion-item *ngIf="p.pres.phone != ''">
-      <ion-icon name="call" item-left></ion-icon>
-      <p>{{p.pres.phone}}</p>
-    </ion-item>
-    <ion-item>
-      <button ion-button icon-left round outline item-right (click)="openPresenterInfoPage(p)">
-        <ion-icon name="information-circle"></ion-icon>
-        More Info
-      </button>
-    </ion-item>
-  </ion-card>
+  <ng-container *ngFor="let p of presentersArray">
+    <ion-card *ngIf="!p.pHidden">
+      <ion-item-divider sticky>
+        <ion-avatar item-left>
+          <img [src]="p.pres.pictureURL == '' ? defaultAvatar : p.pres.pictureURL">
+        </ion-avatar>
+        <h2><b>{{p.pres.firstName}} {{p.pres.lastName}}</b></h2>
+        <ion-badge item-right color="primary">H-index {{p.pres.hindex}}</ion-badge>
+      </ion-item-divider>
+      <ion-item *ngIf="p.affs.length != 0">
+        <ion-icon name="school" item-left></ion-icon>
+        <ng-container *ngFor="let a of p.affs">
+          <p *ngIf="p.affs.indexOf(a)!=p.affs.length-1">{{a.name + " ,"}}</p>
+          <p *ngIf="p.affs.indexOf(a)==p.affs.length-1">{{a.name}}</p>
+        </ng-container>
+      </ion-item>
+      <ion-item *ngIf="p.pres.email != ''">
+        <ion-icon name="mail" item-left></ion-icon>
+        <p>{{p.pres.email}}</p>
+      </ion-item>
+      <ion-item *ngIf="p.pres.phone != ''">
+        <ion-icon name="call" item-left></ion-icon>
+        <p>{{p.pres.phone}}</p>
+      </ion-item>
+      <ion-item>
+        <button ion-button icon-left round outline item-right (click)="openPresenterInfoPage(p)">
+          <ion-icon name="information-circle"></ion-icon>
+          More Info
+        </button>
+      </ion-item>
+    </ion-card>
+  </ng-container>
 </ion-content>

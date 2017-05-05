@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {NavParams, NavController} from 'ionic-angular';
+import {NavParams, NavController, PopoverController} from 'ionic-angular';
 import {AffiliationsService} from '../../providers/affiliations-service';
 import {SubjectAreasService} from '../../providers/subject-areas-service';
 import {PresenterInfoPage} from '../presenterinfo-page/presenterinfo-page';
+import {PopoverSortPage} from '../popoversort-page/popoversort-page';
 
 @Component({
   selector: 'page-presenters',
@@ -14,12 +15,16 @@ export class PresentersPage {
   affiliations: any;
   subjectareas: any;
   presentersArray: any;
+  queryText: any;
+  prevQueryLength: any;
+  popover: any;
   public defaultAvatar: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public affiliationsService: AffiliationsService, public subjectAreasService: SubjectAreasService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public affiliationsService: AffiliationsService, public subjectAreasService: SubjectAreasService, public popCtrl: PopoverController) {
     this.presenters = this.navParams.get("presentersList");
     this.presentersArray = [];
     this.defaultAvatar = "http://193.205.163.223/symposium/assets/img/pictures/default.png";
+    this.popover = popCtrl.create(PopoverSortPage);
     this.loadData();
   }
 
@@ -54,7 +59,12 @@ export class PresentersPage {
           subjAreasArr.push(subjArea);
         }
       }
-      this.presentersArray.push({pres: p, subjAreas: subjAreasArr, affs: affiliationsArr});
+      this.presentersArray.push({
+        pres: p,
+        subjAreas: subjAreasArr,
+        affs: affiliationsArr,
+        pHidden: false
+      });
     }
   }
 
@@ -62,4 +72,61 @@ export class PresentersPage {
     this.navCtrl.push(PresenterInfoPage, {presenter: pres});
   }
 
+  updatePresentersList() {
+    this.queryText = this.queryText.toLowerCase().replace(/,|\.|-/g, '');
+    let queryWords = this.queryText.split(' ').filter(w => !!w.trim().length);
+
+    if (this.queryText.length == 0 || this.queryText.length < this.prevQueryLength) {
+      for (let p of this.presentersArray) {
+        p.pHidden = false;
+      }
+    }
+    this.prevQueryLength = this.queryText.length;
+
+    for (let w of queryWords) {
+      for (let p of this.presentersArray) {
+        if (!(p.pres.firstName.toLowerCase().startsWith(w) || p.pres.lastName.toLowerCase().startsWith(w) || this.searchSubjAreaByWord(w, p) || this.searchAffByWord(w, p)) && !p.pHidden) {
+          p.pHidden = true;
+        }
+      }
+    }
+  }
+
+  searchSubjAreaByWord(w, p) {
+    for (let s of p.subjAreas) {
+      if (s.name.toLowerCase().indexOf(w) > -1) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  searchAffByWord(w, p) {
+    for (let s of p.affs) {
+      if (s.name.toLowerCase().indexOf(w) > -1) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  ionViewDidLoad() {
+    if (this.presentersArray.length != 0) {
+      this.updatePresentersList();
+    }
+  }
+
+  openPopover(event: Event) {
+    /* this.navParams.present(this.popover, {
+     ev: event
+     });
+     this.popover.onDismiss(data => {
+     console.log("popover dismissed");
+     console.log("Selected Item is " + data);
+     });
+     }
+
+     this.popover.present({ev: event});
+     */
+  }
 }
