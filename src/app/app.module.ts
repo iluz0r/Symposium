@@ -12,6 +12,7 @@ import {PopoverSortPage} from '../pages/popoversort-page/popoversort-page';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import {LocalNotifications} from '@ionic-native/local-notifications';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

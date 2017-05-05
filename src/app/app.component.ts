@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
-//import {LocalNotifications} from '@ionic-native/local-notifications';
+import {LocalNotifications} from '@ionic-native/local-notifications';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {ProgramTab} from '../pages/programtab/programtab';
@@ -27,7 +27,7 @@ export class MyApp {
   papers: any;
   presenters: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService, public locationsService: LocationsService, public papersService: PapersService, public presentersService: PresentersService) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService, public locationsService: LocationsService, public papersService: PapersService, public presentersService: PresentersService, public localNotifications: LocalNotifications) {
     this.initializeApp();
 
     this.rootPage = ProgramTab;
@@ -37,7 +37,7 @@ export class MyApp {
     ];
 
     this.loadData();
-    //this.notifications();
+    this.notifications();
   }
 
   initializeApp() {
@@ -114,15 +114,15 @@ export class MyApp {
   }
 
 
-  /*notifications() {
+  notifications() {
     this.localNotifications.schedule({
       id: 1,
       title: 'Hey, la prima notifica',
       text: 'Esempio di prima notifica',
       sound: 'file://res/sounds/whistle.mp3',
       badge: 1,
-      data: new Date(new Date().getTime() + 3600),
+      data: new Date(new Date().getTime() + 60),
       led: '0000FF',
     });
-  }*/
+  }
 }
