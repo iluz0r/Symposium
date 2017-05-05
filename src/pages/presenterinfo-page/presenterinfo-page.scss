@@ -1,0 +1,18 @@
+page-presenterinfo {
+  .item-ios ion-avatar img, .item-md ion-avatar img {
+    width: 140px;
+    height: 140px;
+    display: block;
+    margin: auto;
+  }
+
+  .label-ios, .label-md {
+    white-space: initial;
+    font-size: 1.4rem;
+    color: #8e9093;
+  }
+
+  .item-md.item-block .item-inner, .item-ios.item-block .item-inner {
+    padding-right: inherit;
+  }
+}

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar hideBackButton="false">
+    <ion-title>{{presenterInfo.pres.firstName}} {{presenterInfo.pres.lastName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item-divider sticky>
+      <ion-avatar>
+        <img [src]="presenterInfo.pres.pictureURL == '' ? defaultAvatar : presenterInfo.pres.pictureURL">
+      </ion-avatar>
+    </ion-item-divider>
+    <ion-item *ngIf="presenterInfo.affs.length != 0">
+      <ion-icon name="school" item-left></ion-icon>
+      <ng-container *ngFor="let a of presenterInfo.affs">
+        <p *ngIf="presenterInfo.affs.indexOf(a)!=presenterInfo.affs.length-1">{{a.name + " ,"}}</p>
+        <p *ngIf="presenterInfo.affs.indexOf(a)==presenterInfo.affs.length-1">{{a.name}}</p>
+      </ng-container>
+    </ion-item>
+    <ion-item *ngIf="presenterInfo.subjAreas.length != 0">
+      <ion-icon name="book" item-left></ion-icon>
+      <ng-container *ngFor="let s of presenterInfo.subjAreas" id="sub-area">
+        <ng-container *ngIf="presenterInfo.subjAreas.indexOf(s)!=presenterInfo.subjAreas.length-1">{{s.name + " ,"}}</ng-container>
+        <ng-container *ngIf="presenterInfo.subjAreas.indexOf(s)==presenterInfo.subjAreas.length-1">{{s.name}}</ng-container>
+      </ng-container>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="stats" item-left></ion-icon>
+      <p>H-index: {{presenterInfo.pres.hindex}}</p>
+    </ion-item>
+    <ion-item *ngIf="presenterInfo.pres.email != ''">
+      <ion-icon name="mail" item-left></ion-icon>
+      <a [href]="'mailto:' + presenterInfo.pres.email">{{presenterInfo.pres.email}}</a>
+    </ion-item>
+    <ion-item *ngIf="presenterInfo.pres.phone != ''">
+      <ion-icon name="call" item-left></ion-icon>
+      <p>{{presenterInfo.pres.phone}}</p>
+    </ion-item>
+
+  </ion-card>
+</ion-content>

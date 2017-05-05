@@ -1,3 +1,16 @@
 page-presenters {
 
+  .item-ios ion-avatar ion-img, .item-ios ion-avatar img, .item-md ion-avatar ion-img, .item-md ion-avatar img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .label-ios, .label-md{
+    white-space: initial;
+  }
+
+  .item-md.item-block .item-inner, .item-ios.item-block .item-inner {
+    padding-right: inherit;
+  }
+
 }

@@ -8,7 +8,7 @@ import {DatesService} from '../providers/dates-service';
 import {EventsService} from '../providers/events-service';
 import {LocationsService} from '../providers/locations-service';
 import {PapersService} from '../providers/papers-service';
-import {PresentersService} from '../providers/presenters-service'
+import {PresentersService} from '../providers/presenters-service';
 import {SpeakersService} from '../providers/speakers-service';
 
 @Component({
@@ -47,14 +47,18 @@ export class MyApp {
   }
 
   openPage(page) {
-    this.nav.setRoot(page.component);
     if (page.component === ProgramTab) {
-      this.nav.push(ProgramTab, {
+      this.nav.setRoot(ProgramTab, {
         programDates: this.dates,
         programEvents: this.events,
         programLocations: this.locations,
         programPapers: this.papers, programPresenters: this.presenters
-      }, {animate: false});
+      });
+    }
+    else if(page.component === PresentersPage){
+      this.nav.setRoot(PresentersPage,{
+        presentersList: this.presenters
+      });
     }
   }
 

@@ -1,37 +1,65 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavParams, NavController} from 'ionic-angular';
+import {AffiliationsService} from '../../providers/affiliations-service';
+import {SubjectAreasService} from '../../providers/subject-areas-service';
+import {PresenterInfoPage} from '../presenterinfo-page/presenterinfo-page';
 
 @Component({
   selector: 'page-presenters',
-  templateUrl: 'presenters-page.html'
+  templateUrl: 'presenters-page.html',
+  providers: [AffiliationsService, SubjectAreasService]
 })
 export class PresentersPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{ title: string, note: string, icon: string }>;
+  presenters: any;
+  affiliations: any;
+  subjectareas: any;
+  presentersArray: any;
+  public defaultAvatar: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public affiliationsService: AffiliationsService, public subjectAreasService: SubjectAreasService) {
+    this.presenters = this.navParams.get("presentersList");
+    this.presentersArray = [];
+    this.defaultAvatar = "http://193.205.163.223/symposium/assets/img/pictures/default.png";
+    this.loadData();
+  }
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-      'american-football', 'boat', 'bluetooth', 'build'];
+  loadData() {
+    this.affiliationsService.load().then(data => {
+        this.affiliations = data;
+        this.loadSubjectAreas();
+      }
+    )
+  }
 
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
+  loadSubjectAreas() {
+    this.subjectAreasService.load().then(data => {
+      this.subjectareas = data;
+      this.makePresentersArray();
+    })
+  }
+
+  makePresentersArray() {
+    let affiliationsArr, subjAreasArr;
+
+    for (let p of this.presenters) {
+      affiliationsArr = [];
+      subjAreasArr = [];
+      for (let aff of this.affiliations) {
+        if (p.affiliationsID.indexOf(aff.ID) > -1) {
+          affiliationsArr.push(aff);
+        }
+      }
+      for (let subjArea of this.subjectareas) {
+        if (p.subjectAreasID.indexOf(subjArea.ID) > -1) {
+          subjAreasArr.push(subjArea);
+        }
+      }
+      this.presentersArray.push({pres: p, subjAreas: subjAreasArr, affs: affiliationsArr});
     }
   }
 
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(PresentersPage, {
-      item: item
-    });
+  openPresenterInfoPage(pres) {
+    this.navCtrl.push(PresenterInfoPage, {presenter: pres});
   }
+
 }

@@ -7,16 +7,19 @@ import {MyApp} from './app.component';
 import {ProgramTab} from '../pages/programtab/programtab';
 import {ProgramPage} from '../pages/program-page/program-page';
 import {PresentersPage} from '../pages/presenters-page/presenters-page';
+import {PresenterInfoPage} from "../pages/presenterinfo-page/presenterinfo-page";
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+
 
 @NgModule({
   declarations: [
     MyApp,
     ProgramTab,
     ProgramPage,
-    PresentersPage
+    PresentersPage,
+    PresenterInfoPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     MyApp,
     ProgramTab,
     ProgramPage,
-    PresentersPage
+    PresentersPage,
+    PresenterInfoPage
   ],
   providers: [
     StatusBar,
