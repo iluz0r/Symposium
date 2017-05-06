@@ -17,6 +17,7 @@ export class PresentersPage {
   presentersArray: any;
   queryText: any;
   prevQueryLength: any;
+  sortedBy: any;
   public defaultAvatar: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public affiliationsService: AffiliationsService, public subjectAreasService: SubjectAreasService, public popCtrl: PopoverController) {
@@ -110,12 +111,12 @@ export class PresentersPage {
 
   openPopover(event: Event) {
     let popover = this.popCtrl.create(PopoverSortPage, {
-      sortPresentersBy: function (data) {
-        if (data == 'hindex') {
+      sortPresentersBy: function (option) {
+        if (option == 'hindex') {
           this.presentersArray.sort(function (p1, p2) {
             return (p1.pres.hindex < p2.pres.hindex) ? 1 : ((p2.pres.hindex < p1.pres.hindex) ? -1 : 0);
           })
-        } else if (data == 'lastname') {
+        } else if (option == 'lastname') {
           this.presentersArray.sort(function (p1, p2) {
             return (p1.pres.lastName > p2.pres.lastName) ? 1 : ((p2.pres.lastName > p1.pres.lastName) ? -1 : 0);
           })
@@ -124,7 +125,9 @@ export class PresentersPage {
             return (p1.pres.firstName > p2.pres.firstName) ? 1 : ((p2.pres.firstName > p1.pres.firstName) ? -1 : 0);
           })
         }
-      }.bind(this)
+        this.sortedBy = option;
+      }.bind(this), // Importante per non perdere la visibilità di this nella callback function
+      opt: this.sortedBy
     });
     popover.present({
       ev: event

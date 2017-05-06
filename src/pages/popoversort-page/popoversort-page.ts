@@ -8,14 +8,16 @@ import {NavParams, ViewController, NavController} from 'ionic-angular';
 
 export class PopoverSortPage {
 
-  callback: any;
+  selectedOption: any;
+  sortCallback: any;
 
   constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
-    this.callback = navParams.get("sortPresentersBy");
+    this.sortCallback = navParams.get("sortPresentersBy");
+    this.selectedOption = navParams.get("opt");
   }
 
-  sortPresenters(val: string) {
-    this.callback(val);
+  sortPresenters() {
+    this.sortCallback(this.selectedOption);
     this.viewCtrl.dismiss();
   }
 }

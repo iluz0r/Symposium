@@ -2,17 +2,16 @@
   <ion-list-header>
     Order by:
   </ion-list-header>
-  <ion-list>
-    <button ion-item (click)="sortPresenters('firstname')">
-      <ion-icon item-left name="contact"></ion-icon>
-      First name
-    </button>
-    <button ion-item (click)="sortPresenters('lastname')">
-      <ion-icon item-left name="contact"></ion-icon>
-      Last name
-    </button>
-    <button ion-item (click)="sortPresenters('hindex')">
-      <ion-icon item-left name="stats"></ion-icon>
-      H-index
-    </button>
-  </ion-list>
+  <ion-item>
+    <ion-label>First name</ion-label>
+    <ion-radio value="firstname" (ionSelect)="sortPresenters()"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>Last name</ion-label>
+    <ion-radio value="lastname" (ionSelect)="sortPresenters()"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>H-index</ion-label>
+    <ion-radio value="hindex" (ionSelect)="sortPresenters()"></ion-radio>
+  </ion-item>
+</ion-list>
