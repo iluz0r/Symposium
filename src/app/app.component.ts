@@ -5,6 +5,8 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {ProgramTab} from '../pages/programtab/programtab';
 import {PresentersPage} from '../pages/presenters-page/presenters-page';
+import {InvitedSpeakersPage} from '../pages/invitedspeakers-page/invitedspeakers-page';
+
 import {DatesService} from '../providers/dates-service';
 import {EventsService} from '../providers/events-service';
 import {LocationsService} from '../providers/locations-service';
@@ -15,7 +17,7 @@ import {SpeakersService} from '../providers/speakers-service';
 @Component({
   selector: 'page_app',
   templateUrl: 'app.html',
-  providers: [DatesService, EventsService, LocationsService, PapersService, PresentersService]
+  providers: [DatesService, EventsService, LocationsService, PapersService, PresentersService, SpeakersService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -26,14 +28,16 @@ export class MyApp {
   locations: any;
   papers: any;
   presenters: any;
+  speakers: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService, public locationsService: LocationsService, public papersService: PapersService, public presentersService: PresentersService, public localNotifications: LocalNotifications) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService, public locationsService: LocationsService, public papersService: PapersService, public presentersService: PresentersService, public speakersService: SpeakersService, public localNotifications: LocalNotifications) {
     this.initializeApp();
 
     this.rootPage = ProgramTab;
     this.pages = [
       {title: 'Schedule', component: ProgramTab, icon: 'calendar'},
-      {title: 'Presenters', component: PresentersPage, icon: 'contacts'}
+      {title: 'Presenters', component: PresentersPage, icon: 'contacts'},
+      {title: 'Invited Speakers', component: InvitedSpeakersPage, icon: 'microphone'}
     ];
 
     this.loadData();
@@ -57,11 +61,12 @@ export class MyApp {
         programLocations: this.locations,
         programPapers: this.papers, programPresenters: this.presenters
       });
-    }
-    else if (page.component === PresentersPage) {
+    } else if (page.component === PresentersPage) {
       this.nav.setRoot(PresentersPage, {
         presentersList: this.presenters
       });
+    } else {
+      this.nav.setRoot(page.component);
     }
   }
 

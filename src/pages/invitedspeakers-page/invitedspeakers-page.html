@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Invited Speakers</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngFor="let s of invitedSpeakersArray">
+    <ion-card>
+      <ion-item-divider sticky>
+        <ion-avatar item-left>
+          <img [src]="s.pres.pictureURL == '' ? defaultAvatar : s.pres.pictureURL">
+        </ion-avatar>
+        <h2><b>{{s.pres.firstName}} {{s.pres.lastName}}</b></h2>
+        <ion-badge item-right color="primary">H-index {{s.pres.hindex}}</ion-badge>
+      </ion-item-divider>
+      <ion-item *ngIf="s.affs.length != 0">
+        <ion-icon name="school" item-left></ion-icon>
+        <ng-container *ngFor="let a of s.affs">
+          <p *ngIf="s.affs.indexOf(a)!=s.affs.length-1">{{a.name + " ,"}}</p>
+          <p *ngIf="s.affs.indexOf(a)==s.affs.length-1">{{a.name}}</p>
+        </ng-container>
+      </ion-item>
+      <ion-item *ngIf="s.pres.email != ''">
+        <ion-icon name="mail" item-left></ion-icon>
+        <p>{{s.pres.email}}</p>
+      </ion-item>
+      <ion-item *ngIf="s.pres.phone != ''">
+        <ion-icon name="call" item-left></ion-icon>
+        <p>{{s.pres.phone}}</p>
+      </ion-item>
+      <ion-item>
+        <button ion-button icon-left round outline item-right (click)="openPresenterInfoPage(s)">
+          <ion-icon name="information-circle"></ion-icon>
+          More Info
+        </button>
+      </ion-item>
+    </ion-card>
+  </ng-container>
+</ion-content>

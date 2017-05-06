@@ -9,6 +9,7 @@ import {ProgramPage} from '../pages/program-page/program-page';
 import {PresentersPage} from '../pages/presenters-page/presenters-page';
 import {PresenterInfoPage} from '../pages/presenterinfo-page/presenterinfo-page';
 import {PopoverSortPage} from '../pages/popoversort-page/popoversort-page';
+import {InvitedSpeakersPage} from "../pages/invitedspeakers-page/invitedspeakers-page";
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -22,6 +23,7 @@ import {LocalNotifications} from '@ionic-native/local-notifications';
     ProgramPage,
     PresentersPage,
     PresenterInfoPage,
+    InvitedSpeakersPage,
     PopoverSortPage
   ],
   imports: [
@@ -36,6 +38,7 @@ import {LocalNotifications} from '@ionic-native/local-notifications';
     ProgramPage,
     PresentersPage,
     PresenterInfoPage,
+    InvitedSpeakersPage,
     PopoverSortPage
   ],
   providers: [
