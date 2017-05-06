@@ -17,14 +17,12 @@ export class PresentersPage {
   presentersArray: any;
   queryText: any;
   prevQueryLength: any;
-  popover: any;
   public defaultAvatar: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public affiliationsService: AffiliationsService, public subjectAreasService: SubjectAreasService, public popCtrl: PopoverController) {
     this.presenters = this.navParams.get("presentersList");
     this.presentersArray = [];
     this.defaultAvatar = "http://193.205.163.223/symposium/assets/img/pictures/default.png";
-    this.popover = popCtrl.create(PopoverSortPage);
     this.loadData();
   }
 
@@ -110,23 +108,27 @@ export class PresentersPage {
     return false;
   }
 
-  ionViewDidLoad() {
-    if (this.presentersArray.length != 0) {
-      this.updatePresentersList();
-    }
-  }
-
   openPopover(event: Event) {
-    /* this.navParams.present(this.popover, {
-     ev: event
-     });
-     this.popover.onDismiss(data => {
-     console.log("popover dismissed");
-     console.log("Selected Item is " + data);
-     });
-     }
-
-     this.popover.present({ev: event});
-     */
+    let popover = this.popCtrl.create(PopoverSortPage, {
+      sortPresentersBy: function (data) {
+        if (data == 'hindex') {
+          this.presentersArray.sort(function (p1, p2) {
+            return (p1.pres.hindex < p2.pres.hindex) ? 1 : ((p2.pres.hindex < p1.pres.hindex) ? -1 : 0);
+          })
+        } else if (data == 'lastname') {
+          this.presentersArray.sort(function (p1, p2) {
+            return (p1.pres.lastName > p2.pres.lastName) ? 1 : ((p2.pres.lastName > p1.pres.lastName) ? -1 : 0);
+          })
+        } else {
+          this.presentersArray.sort(function (p1, p2) {
+            return (p1.pres.firstName > p2.pres.firstName) ? 1 : ((p2.pres.firstName > p1.pres.firstName) ? -1 : 0);
+          })
+        }
+      }.bind(this)
+    });
+    popover.present({
+      ev: event
+    });
   }
+
 }

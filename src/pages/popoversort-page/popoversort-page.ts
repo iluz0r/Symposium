@@ -1,18 +1,21 @@
 import {Component} from '@angular/core';
-import {NavController, ViewController} from 'ionic-angular';
-import {PresentersPage} from '../presenters-page/presenters-page';
-
+import {NavParams, ViewController, NavController} from 'ionic-angular';
 
 @Component({
-  templateUrl: 'popoversort-page.html'
+  templateUrl: 'popoversort-page.html',
+  selector: 'popoversort-page'
 })
 
 export class PopoverSortPage {
 
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController) {
+  callback: any;
+
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
+    this.callback = navParams.get("sortPresentersBy");
   }
 
-  sortPresentersBy() {
+  sortPresenters(val: string) {
+    this.callback(val);
     this.viewCtrl.dismiss();
   }
 }

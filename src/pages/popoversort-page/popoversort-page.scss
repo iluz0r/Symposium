@@ -1,5 +1,9 @@
 popoversort-page {
-  .popover-ios .popover-content {
+  .list-md, .list-ios, .item-ios, .item-md {
     background: #f7f7f7;
+  }
+
+  .list-md, .list-ios {
+    margin-bottom:0px;
   }
 }

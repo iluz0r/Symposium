@@ -1,15 +1,18 @@
-<ion-list radio-group [(ngModel)]="sortParam">
+<ion-list radio-group [(ngModel)]="selectedOption">
   <ion-list-header>
     Order by:
   </ion-list-header>
-
-  <ion-item>
-    <ion-label>Last Name</ion-label>
-    <ion-radio checked="false" value="lastname"></ion-radio>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>H-index</ion-label>
-    <ion-radio value="hindex" (click)="sortPresentersBy()"></ion-radio>
-  </ion-item>
-</ion-list>
+  <ion-list>
+    <button ion-item (click)="sortPresenters('firstname')">
+      <ion-icon item-left name="contact"></ion-icon>
+      First name
+    </button>
+    <button ion-item (click)="sortPresenters('lastname')">
+      <ion-icon item-left name="contact"></ion-icon>
+      Last name
+    </button>
+    <button ion-item (click)="sortPresenters('hindex')">
+      <ion-icon item-left name="stats"></ion-icon>
+      H-index
+    </button>
+  </ion-list>
