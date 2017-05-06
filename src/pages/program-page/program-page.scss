@@ -4,7 +4,7 @@ page-program {
     padding: 0px;
   }
 
-  #outertime {
+  #outer {
     height: 100%;
     display: flex;
     justify-content: center;
@@ -15,9 +15,18 @@ page-program {
     width: 100%;
   }
 
+  #innericon {
+    align-self: center;
+  }
+
   .card-title {
     font-size: 1.9rem;
     font-weight: 500;
+  }
+
+  .ion-md-paper, .ion-ios-paper {
+    content: "\f33f";
+    font-size: 25px;
   }
 
   ion-label {
@@ -34,6 +43,14 @@ page-program {
 
   .card-header {
     padding: 16px 16px 16px 0px;
+  }
+
+  .card-content-md.pap {
+    padding: 0px 0px 0px 0px;
+  }
+
+  .card-content-ios.pap {
+    padding: 0px 0px 0px 0px;
   }
 
 }

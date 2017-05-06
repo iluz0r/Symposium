@@ -134,4 +134,8 @@ export class PresentersPage {
     });
   }
 
+  openPaperInfoPage() {
+
+  }
+
 }

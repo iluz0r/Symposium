@@ -13,11 +13,12 @@ import {LocationsService} from '../providers/locations-service';
 import {PapersService} from '../providers/papers-service';
 import {PresentersService} from '../providers/presenters-service';
 import {SpeakersService} from '../providers/speakers-service';
+import {ChairsService} from '../providers/chairs-service';
 
 @Component({
   selector: 'page_app',
   templateUrl: 'app.html',
-  providers: [DatesService, EventsService, LocationsService, PapersService, PresentersService, SpeakersService]
+  providers: [DatesService, EventsService, LocationsService, PapersService, PresentersService, SpeakersService, ChairsService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -28,9 +29,9 @@ export class MyApp {
   locations: any;
   papers: any;
   presenters: any;
-  speakers: any;
+  chairs: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService, public locationsService: LocationsService, public papersService: PapersService, public presentersService: PresentersService, public speakersService: SpeakersService, public localNotifications: LocalNotifications) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService, public locationsService: LocationsService, public papersService: PapersService, public presentersService: PresentersService, public speakersService: SpeakersService, public chairsService: ChairsService, public localNotifications: LocalNotifications) {
     this.initializeApp();
 
     this.rootPage = ProgramTab;
@@ -59,7 +60,7 @@ export class MyApp {
         programDates: this.dates,
         programEvents: this.events,
         programLocations: this.locations,
-        programPapers: this.papers, programPresenters: this.presenters
+        programPapers: this.papers, programPresenters: this.presenters, programChairs: this.chairs
       });
     } else if (page.component === PresentersPage) {
       this.nav.setRoot(PresentersPage, {
@@ -102,18 +103,24 @@ export class MyApp {
     this.papersService.load().then(data => {
         this.papers = data;
         this.loadPresenters();
-      }
-    );
+      });
   }
 
   loadPresenters() {
     this.presentersService.load().then(data => {
       this.presenters = data;
+      this.loadChairs();
+    });
+  }
+
+  loadChairs() {
+    this.chairsService.load().then(data => {
+      this.chairs = data;
       this.nav.setRoot(ProgramTab, {
         programDates: this.dates,
         programEvents: this.events,
         programLocations: this.locations,
-        programPapers: this.papers, programPresenters: this.presenters
+        programPapers: this.papers, programPresenters: this.presenters, programChairs: this.chairs
       }, {animate: false});
     });
   }

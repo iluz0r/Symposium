@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
+import {PresenterInfoPage} from '../presenterinfo-page/presenterinfo-page';
 
 @Component({
   selector: 'page-program',
@@ -13,20 +14,22 @@ export class ProgramPage {
   eventsArray: any;
   papers: any;
   presenters: any;
+  chairs: any;
 
-  constructor(public navParams: NavParams) {
+  constructor(public navParams: NavParams, public navCtrl: NavController) {
     this.date = navParams.get("date");
     this.events = navParams.get("programEvents");
     this.locations = navParams.get("programLocations");
     this.papers = navParams.get("programPapers");
     this.presenters = navParams.get("programPresenters");
+    this.chairs = navParams.get("programChairs");
     this.eventsArray = [];
 
     this.makeEventsArray();
   }
 
   makeEventsArray() {
-    let loc, papersInfo, pres;
+    let loc, papersInfo, pres, chair;
 
     for (let e of this.events) {
       if (e.date == this.date) {
@@ -51,8 +54,14 @@ export class ProgramPage {
               papersInfo.push({paper: p, presenters: pres});
             }
           }
+          for(let c of this.chairs) {
+            if (c.EID == e.chairEID) {
+              chair = c;
+              break;
+            }
+          }
         }
-        this.eventsArray.push({event: e, location: loc, papersInfo: papersInfo});
+        this.eventsArray.push({event: e, location: loc, papersInfo: papersInfo, eventChair: chair});
       }
     }
   }

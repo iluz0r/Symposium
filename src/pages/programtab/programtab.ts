@@ -13,6 +13,7 @@ export class ProgramTab {
   locations: any;
   papers: any;
   presenters: any;
+  chairs: any;
 
   constructor(public navParams: NavParams) {
     this.rootPage = ProgramPage;
@@ -21,5 +22,6 @@ export class ProgramTab {
     this.locations = navParams.get("programLocations");
     this.papers = navParams.get("programPapers");
     this.presenters = navParams.get("programPresenters");
+    this.chairs = navParams.get("programChairs");
   }
 }
