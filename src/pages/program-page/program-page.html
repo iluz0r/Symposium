@@ -36,9 +36,8 @@
               <div class="event-info">
                 <p><b>Location:</b> {{e.location.name}}</p>
                 <ng-container *ngIf="e.event.type !== 2">
-                  <p><b>Chair:</b>
-                    {{e.eventChair.firstName}}
-                    {{e.eventChair.lastName}}
+                  <p><b>Chair: </b><u (click)="openPresenterInfoPage(e.eventChair)">{{e.eventChair.firstName}}
+                    {{e.eventChair.lastName}}</u>
                   </p>
                 </ng-container>
               </div>

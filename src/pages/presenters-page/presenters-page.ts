@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {NavParams, NavController, PopoverController} from 'ionic-angular';
-import {AffiliationsService} from '../../providers/affiliations-service';
-import {SubjectAreasService} from '../../providers/subject-areas-service';
 import {PresenterInfoPage} from '../presenterinfo-page/presenterinfo-page';
 import {PopoverSortPage} from '../popoversort-page/popoversort-page';
+import {AffiliationsService} from '../../providers/affiliations-service';
+import {SubjectAreasService} from '../../providers/subject-areas-service';
 import * as Confs from '../../app/app.conf';
 
 @Component({
@@ -13,15 +13,15 @@ import * as Confs from '../../app/app.conf';
 })
 export class PresentersPage {
   presenters: any;
-  affiliations: any;
-  subjectareas: any;
   presentersArray: any;
   queryText: any;
   prevQueryLength: any;
   sortedBy: any;
+  affiliations: any;
+  subjectareas: any;
   public defaultAvatar: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public affiliationsService: AffiliationsService, public subjectAreasService: SubjectAreasService, public popCtrl: PopoverController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popCtrl: PopoverController, public affiliationsService: AffiliationsService, public subjectAreasService: SubjectAreasService) {
     this.presenters = this.navParams.get("presentersList");
     this.presentersArray = [];
     this.defaultAvatar = Confs.infos.defaultAvatar;
@@ -45,7 +45,6 @@ export class PresentersPage {
 
   makePresentersArray() {
     let affiliationsArr, subjAreasArr;
-
     for (let p of this.presenters) {
       affiliationsArr = [];
       subjAreasArr = [];
@@ -85,7 +84,7 @@ export class PresentersPage {
 
     for (let w of queryWords) {
       for (let p of this.presentersArray) {
-        if (!(p.pres.firstName.toLowerCase().startsWith(w) || p.pres.lastName.toLowerCase().startsWith(w) || this.searchSubjAreaByWord(w, p) || this.searchAffByWord(w, p)) && !p.pHidden) {
+        if (!(p.pres.firstName.toLowerCase().indexOf(w) > -1 || p.pres.lastName.toLowerCase().indexOf(w) > -1 || this.searchSubjAreaByWord(w, p) || this.searchAffByWord(w, p)) && !p.pHidden) {
           p.pHidden = true;
         }
       }

@@ -22,7 +22,7 @@
 <ion-content>
   <ion-list>
     <ng-container *ngFor="let p of presentersArray">
-      <ion-item *ngIf="!p.pHidden" (click)="openPresenterInfoPage(p)">
+      <ion-item *ngIf="!p.pHidden" (click)="openPresenterInfoPage(p.pres)">
         <ion-avatar item-left>
           <img [src]="p.pres.pictureURL == '' ? defaultAvatar : p.pres.pictureURL">
         </ion-avatar>

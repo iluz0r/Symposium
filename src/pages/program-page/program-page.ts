@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {App, NavController, NavParams} from 'ionic-angular';
 import {PaperInfoPage} from '../paperinfo-page/paperinfo-page';
+import {PresenterInfoPage} from '../presenterinfo-page/presenterinfo-page';
 
 @Component({
   selector: 'page-program',
@@ -67,6 +68,10 @@ export class ProgramPage {
         this.eventsArray.push({event: e, location: loc, papersInfo: papersInfo, eventChair: chair});
       }
     }
+  }
+
+  openPresenterInfoPage(pres) {
+    this.app.getRootNav().push(PresenterInfoPage, {presenter: pres});
   }
 
 }
