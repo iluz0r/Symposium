@@ -33,13 +33,15 @@
             </ion-col>
             <ion-col>
               <ion-card-title>{{e.event.name}}</ion-card-title>
-              <p><b>Location:</b> {{e.location.name}}</p>
-              <ng-container *ngIf="e.event.type !== 2">
-                <p><b>Chair:</b>
-                  {{e.eventChair.firstName}}
-                  {{e.eventChair.lastName}}
-                </p>
-              </ng-container>
+              <div class="event-info">
+                <p><b>Location:</b> {{e.location.name}}</p>
+                <ng-container *ngIf="e.event.type !== 2">
+                  <p><b>Chair:</b>
+                    {{e.eventChair.firstName}}
+                    {{e.eventChair.lastName}}
+                  </p>
+                </ng-container>
+              </div>
             </ion-col>
           </ion-row>
         </ion-grid>
