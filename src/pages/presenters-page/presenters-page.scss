@@ -1,20 +1,25 @@
 page-presenters {
 
   .item-ios ion-avatar ion-img, .item-ios ion-avatar img, .item-md ion-avatar ion-img, .item-md ion-avatar img {
-    width: 60px;
-    height: 60px;
-  }
+    width: 50px;
+    height: 50px;
 
-  .label-ios, .label-md {
-    white-space: initial;
-  }
-
-  .item-md.item-block .item-inner, .item-ios.item-block .item-inner {
-    padding-right: inherit;
   }
 
   .toolbar .searchbar-ios .searchbar-input, .toolbar .searchbar-md .searchbar-input {
     background: #f7f7f7;;
+  }
+
+  .item-ios, .item-md {
+    height: 70px;
+  }
+
+  .item-md h2, .item-ios h2 {
+    font-weight: 500;
+  }
+
+  .ion-md-arrow-dropright, .ion-ios-arrow-dropright {
+    color: #b7b7b7;
   }
 
 }
