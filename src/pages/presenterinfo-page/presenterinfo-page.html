@@ -6,11 +6,11 @@
 
 <ion-content>
   <ion-card>
-    <ion-item-divider sticky>
+    <ion-item>
       <ion-avatar>
         <img [src]="presenterInfo.pres.pictureURL == '' ? defaultAvatar : presenterInfo.pres.pictureURL">
       </ion-avatar>
-    </ion-item-divider>
+    </ion-item>
     <ion-item *ngIf="presenterInfo.affs.length != 0">
       <ion-icon name="school" item-left></ion-icon>
       <ng-container *ngFor="let a of presenterInfo.affs">
@@ -39,6 +39,5 @@
       <ion-icon name="call" item-left></ion-icon>
       <a [href]="'tel:' + presenterInfo.pres.phone">{{presenterInfo.pres.phone}}</a>
     </ion-item>
-
   </ion-card>
 </ion-content>

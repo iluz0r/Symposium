@@ -42,8 +42,8 @@ export class ProgramPage {
             break;
           }
         }
+        papersInfo = [];
         if (e.type != '2') {
-          papersInfo = [];
           for (let p of this.papers) {
             if (p.eventID == e.ID) {
               pres = [];
@@ -57,7 +57,7 @@ export class ProgramPage {
               papersInfo.push({paper: p, presenters: pres});
             }
           }
-          for(let c of this.chairs) {
+          for (let c of this.chairs) {
             if (c.EID == e.chairEID) {
               chair = c;
               break;

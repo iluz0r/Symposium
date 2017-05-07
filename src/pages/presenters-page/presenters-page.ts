@@ -4,6 +4,7 @@ import {AffiliationsService} from '../../providers/affiliations-service';
 import {SubjectAreasService} from '../../providers/subject-areas-service';
 import {PresenterInfoPage} from '../presenterinfo-page/presenterinfo-page';
 import {PopoverSortPage} from '../popoversort-page/popoversort-page';
+import * as Confs from '../../app/app.conf';
 
 @Component({
   selector: 'page-presenters',
@@ -23,7 +24,7 @@ export class PresentersPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public affiliationsService: AffiliationsService, public subjectAreasService: SubjectAreasService, public popCtrl: PopoverController) {
     this.presenters = this.navParams.get("presentersList");
     this.presentersArray = [];
-    this.defaultAvatar = "http://193.205.163.223/symposium/assets/img/pictures/default.png";
+    this.defaultAvatar = Confs.infos.defaultAvatar;
     this.loadData();
   }
 
@@ -132,10 +133,6 @@ export class PresentersPage {
     popover.present({
       ev: event
     });
-  }
-
-  openPaperInfoPage() {
-
   }
 
 }

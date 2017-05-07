@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {NavParams} from 'ionic-angular';
+import * as Confs from '../../app/app.conf';
 
 @Component({
   selector: 'page-presenterinfo',
@@ -12,7 +13,7 @@ export class PresenterInfoPage {
 
   constructor(public navParams: NavParams) {
     this.presenterInfo = navParams.get("presenter");
-    this.defaultAvatar = "http://193.205.163.223/symposium/assets/img/pictures/default.png";
+    this.defaultAvatar = Confs.infos.defaultAvatar;
   }
 
 }
