@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
+import * as Confs from '../app/app.conf';
 import 'rxjs/add/operator/map';
 
 /*
@@ -22,7 +23,7 @@ export class PresentersService {
     }
 
     return new Promise(resolve => {
-      this.http.get('http://193.205.163.223:8080/Symposium/resources/presenters')
+      this.http.get(Confs.infos.serverIP + '/Symposium/resources/presenters')
         .map(res => res.json())
         .subscribe(data => {
           this.result = data;

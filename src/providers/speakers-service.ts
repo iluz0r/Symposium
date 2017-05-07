@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
+import * as Confs from '../app/app.conf';
 import 'rxjs/add/operator/map';
 
 /*
-  Generated class for the SpeakersService provider.
+ Generated class for the SpeakersService provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
+ See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+ for more info on providers and Angular 2 DI.
+ */
 @Injectable()
 export class SpeakersService {
 
@@ -22,7 +23,7 @@ export class SpeakersService {
     }
 
     return new Promise(resolve => {
-      this.http.get('http://193.205.163.223:8080/Symposium/resources/invitedspeakers')
+      this.http.get(Confs.infos.serverIP + '/Symposium/resources/invitedspeakers')
         .map(res => res.json())
         .subscribe(data => {
           this.result = data;

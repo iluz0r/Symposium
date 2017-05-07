@@ -21,8 +21,10 @@
     <ion-item *ngIf="presenterInfo.subjAreas.length != 0">
       <ion-icon name="book" item-left></ion-icon>
       <ng-container *ngFor="let s of presenterInfo.subjAreas" id="sub-area">
-        <ng-container *ngIf="presenterInfo.subjAreas.indexOf(s)!=presenterInfo.subjAreas.length-1">{{s.name + " ,"}}</ng-container>
-        <ng-container *ngIf="presenterInfo.subjAreas.indexOf(s)==presenterInfo.subjAreas.length-1">{{s.name}}</ng-container>
+        <ng-container *ngIf="presenterInfo.subjAreas.indexOf(s)!=presenterInfo.subjAreas.length-1">{{s.name + " ,"}}
+        </ng-container>
+        <ng-container *ngIf="presenterInfo.subjAreas.indexOf(s)==presenterInfo.subjAreas.length-1">{{s.name}}
+        </ng-container>
       </ng-container>
     </ion-item>
     <ion-item>
@@ -35,7 +37,7 @@
     </ion-item>
     <ion-item *ngIf="presenterInfo.pres.phone != ''">
       <ion-icon name="call" item-left></ion-icon>
-      <p>{{presenterInfo.pres.phone}}</p>
+      <a [href]="'tel:' + presenterInfo.pres.phone">{{presenterInfo.pres.phone}}</a>
     </ion-item>
 
   </ion-card>

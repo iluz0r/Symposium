@@ -105,9 +105,9 @@ export class MyApp {
 
   loadPapers() {
     this.papersService.load().then(data => {
-        this.papers = data;
-        this.loadPresenters();
-      });
+      this.papers = data;
+      this.loadPresenters();
+    });
   }
 
   loadPresenters() {
