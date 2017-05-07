@@ -14,14 +14,14 @@
     <ion-item *ngIf="presenterInfo.affs.length != 0">
       <ion-icon name="school" item-left></ion-icon>
       <ng-container *ngFor="let a of presenterInfo.affs">
-        <p *ngIf="presenterInfo.affs.indexOf(a)!=presenterInfo.affs.length-1">{{a.name + " ,"}}</p>
+        <p *ngIf="presenterInfo.affs.indexOf(a)!=presenterInfo.affs.length-1">{{a.name + ", "}}</p>
         <p *ngIf="presenterInfo.affs.indexOf(a)==presenterInfo.affs.length-1">{{a.name}}</p>
       </ng-container>
     </ion-item>
     <ion-item *ngIf="presenterInfo.subjAreas.length != 0">
       <ion-icon name="book" item-left></ion-icon>
       <ng-container *ngFor="let s of presenterInfo.subjAreas" id="sub-area">
-        <ng-container *ngIf="presenterInfo.subjAreas.indexOf(s)!=presenterInfo.subjAreas.length-1">{{s.name + " ,"}}
+        <ng-container *ngIf="presenterInfo.subjAreas.indexOf(s)!=presenterInfo.subjAreas.length-1">{{s.name + ", "}}
         </ng-container>
         <ng-container *ngIf="presenterInfo.subjAreas.indexOf(s)==presenterInfo.subjAreas.length-1">{{s.name}}
         </ng-container>

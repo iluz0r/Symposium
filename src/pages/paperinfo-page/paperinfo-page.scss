@@ -5,4 +5,23 @@ page-paperinfo {
     box-shadow: none;
   }
 
+  .card-title-md, .card-title-ios {
+    white-space: initial;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .card-md p, .card-ios p {
+    white-space: initial;
+    text-align: justify;
+  }
+
+  .card-md h2, .card-ios h2 {
+    font-weight: 500;
+  }
+
+  u {
+    color: color($colors, primary);
+  }
+
 }

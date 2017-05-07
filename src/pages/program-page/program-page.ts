@@ -28,12 +28,12 @@ export class ProgramPage {
     this.makeEventsArray();
   }
 
-  openPaperInfoPage(papInfo) {
-    this.app.getRootNav().push(PaperInfoPage, {paperInfo: papInfo});
+  openPaperInfoPage(paper) {
+    this.app.getRootNav().push(PaperInfoPage, {paperInfo: paper});
   }
 
   makeEventsArray() {
-    let loc, papersInfo, pres, chair;
+    let loc, papersInfo, chair;
 
     for (let e of this.events) {
       if (e.date == this.date) {
@@ -47,15 +47,7 @@ export class ProgramPage {
         if (e.type != '2') {
           for (let p of this.papers) {
             if (p.eventID == e.ID) {
-              pres = [];
-              for (let pr of this.presenters) {
-                for (let paperID of pr.papersID) {
-                  if (paperID == p.ID) {
-                    pres.push(pr);
-                  }
-                }
-              }
-              papersInfo.push({paper: p, presenters: pres});
+              papersInfo.push(p);
             }
           }
           for (let c of this.chairs) {
@@ -65,7 +57,7 @@ export class ProgramPage {
             }
           }
         }
-        this.eventsArray.push({event: e, location: loc, papersInfo: papersInfo, eventChair: chair});
+        this.eventsArray.push({event: e, location: loc, eventPapers: papersInfo, eventChair: chair});
       }
     }
   }

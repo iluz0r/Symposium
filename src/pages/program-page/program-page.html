@@ -51,17 +51,11 @@
         <ion-card-content #paperCard
                           [class]="paperCard.className.split(' ')[0] + ' ' + paperCard.className.split(' ')[1] + ' pap'">
           <ion-grid>
-            <ion-row *ngFor="let paperInfo of e.papersInfo" (click)="openPaperInfoPage(paperInfo)">
-              <ion-col col-3>
-                <div id="outer">
-                  <div id="innericon">
-                    <ion-icon name="paper" item-left></ion-icon>
-                  </div>
-                </div>
-              </ion-col>
+            <ion-row *ngFor="let paper of e.eventPapers" (click)="openPaperInfoPage(paper)">
+
               <ion-col>
                 <ion-card-header text-wrap="">
-                  {{paperInfo.paper.title}}
+                  {{paper.title}}
                 </ion-card-header>
               </ion-col>
             </ion-row>

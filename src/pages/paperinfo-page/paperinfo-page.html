@@ -7,41 +7,20 @@
 <ion-content class="aligner">
   <ion-card>
     <ion-item-divider sticky>
-      <ion-card-title>Titolo del paper</ion-card-title>
+      <ion-card-title>{{paperInfo.pap.title}}</ion-card-title>
     </ion-item-divider>
     <ion-item>
-      <ng-container>
-        Abstract: bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+      <ng-container *ngIf="paperInfo.pap.papAbstract!=''">
+        <h2>Abstract:</h2>
+        <p>{{paperInfo.pap.papAbstract}}</p>
       </ng-container>
     </ion-item>
 
     <ion-item>
-
-      <ng-container>
-        <ng-container>Presenters:
-        </ng-container>
-
-        <ng-container>
-        </ng-container>
+      <h2>Authors:</h2>
+      <ng-container *ngFor="let a of paperInfo.papAuthors">
+        <p (click)="openPresenterInfoPage(a)"><u>{{a.firstName}} {{a.lastName}}</u></p>
       </ng-container>
-
     </ion-item>
-
-
-    <ion-item>
-
-      <ng-container>
-        <ng-container>Authors:
-        </ng-container>
-        <ng-container>
-        </ng-container>
-      </ng-container>
-
-    </ion-item>
-
   </ion-card>
 </ion-content>
-
-
-<!--*ngIf="presenterInfo.subjAreas.length != 0"-->
-<!--*ngFor="let s of presenterInfo.subjAreas" id="sub-area"-->
