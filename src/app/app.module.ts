@@ -6,6 +6,7 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {MyApp} from './app.component';
 import {ProgramTab} from '../pages/programtab/programtab';
 import {ProgramPage} from '../pages/program-page/program-page';
+import {PaperInfoPage} from '../pages/paperinfo-page/paperinfo-page';
 import {PresentersPage} from '../pages/presenters-page/presenters-page';
 import {PresenterInfoPage} from '../pages/presenterinfo-page/presenterinfo-page';
 import {PopoverSortPage} from '../pages/popoversort-page/popoversort-page';
@@ -21,6 +22,7 @@ import {LocalNotifications} from '@ionic-native/local-notifications';
     MyApp,
     ProgramTab,
     ProgramPage,
+    PaperInfoPage,
     PresentersPage,
     PresenterInfoPage,
     InvitedSpeakersPage,
@@ -36,6 +38,7 @@ import {LocalNotifications} from '@ionic-native/local-notifications';
     MyApp,
     ProgramTab,
     ProgramPage,
+    PaperInfoPage,
     PresentersPage,
     PresenterInfoPage,
     InvitedSpeakersPage,
