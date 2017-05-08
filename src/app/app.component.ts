@@ -10,6 +10,7 @@ import {ProgramTab} from '../pages/programtab/programtab';
 import {PresentersPage} from '../pages/presenters-page/presenters-page';
 import {InvitedSpeakersPage} from '../pages/invitedspeakers-page/invitedspeakers-page';
 import {AboutPage} from '../pages/about-page/about-page';
+import {VenuePage} from '../pages/venue-page/venue-page';
 
 import {DatesService} from '../providers/dates-service';
 import {EventsService} from '../providers/events-service';
@@ -42,7 +43,8 @@ export class MyApp {
     this.pages = [
       {title: 'Schedule', component: ProgramTab, icon: 'calendar'},
       {title: 'Presenters', component: PresentersPage, icon: 'contacts'},
-      {title: 'Invited Speakers', component: InvitedSpeakersPage, icon: 'microphone'},
+      {title: 'Invited speakers', component: InvitedSpeakersPage, icon: 'microphone'},
+      {title: 'Conference venue', component: VenuePage, icon: 'pin'},
       {title: 'About', component: AboutPage, icon: 'information-circle'}
     ];
 
@@ -79,6 +81,8 @@ export class MyApp {
       this.nav.setRoot(PresentersPage, {
         presentersList: this.presenters
       });
+    } else if (page.component === VenuePage) {
+      this.nav.setRoot(VenuePage, {venues: this.locations});
     } else {
       this.nav.setRoot(page.component);
     }

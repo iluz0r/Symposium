@@ -11,6 +11,7 @@ import {PresentersPage} from '../pages/presenters-page/presenters-page';
 import {PresenterInfoPage} from '../pages/presenterinfo-page/presenterinfo-page';
 import {PopoverSortPage} from '../pages/popoversort-page/popoversort-page';
 import {InvitedSpeakersPage} from "../pages/invitedspeakers-page/invitedspeakers-page";
+import {VenuePage} from '../pages/venue-page/venue-page';
 import {AboutPage} from '../pages/about-page/about-page';
 
 import {StatusBar} from '@ionic-native/status-bar';
@@ -30,6 +31,7 @@ import {Toast} from '@ionic-native/toast';
     PresenterInfoPage,
     InvitedSpeakersPage,
     PopoverSortPage,
+    VenuePage,
     AboutPage
   ],
   imports: [
@@ -47,6 +49,7 @@ import {Toast} from '@ionic-native/toast';
     PresenterInfoPage,
     InvitedSpeakersPage,
     PopoverSortPage,
+    VenuePage,
     AboutPage
   ],
   providers: [

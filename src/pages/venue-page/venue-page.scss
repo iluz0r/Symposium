@@ -1,0 +1,20 @@
+venue-page {
+  .item-ios, .item-md {
+    background: white;
+  }
+
+  .address {
+    white-space: initial;
+    text-align: left;
+    color: #666;
+    font-size: 1.45rem;
+  }
+
+  .card-title-md, .card-title-ios {
+    display: block;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
+}
