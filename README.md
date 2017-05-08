@@ -9,3 +9,7 @@ npm uninstall @ionic-native/core  <br />
 npm install @ionic-native/core@latest  <br />
 ionic plugin add --save de.appplant.cordova.plugin.local-notification  <br />
 npm install --save @ionic-native/local-notifications  <br />
+ionic plugin add --save cordova-plugin-network-information <br />
+npm install --save @ionic-native/network <br />
+ionic plugin add --save cordova-plugin-x-toast <br />
+npm install --save @ionic-native/toast <br />
