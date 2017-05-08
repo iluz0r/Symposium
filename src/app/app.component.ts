@@ -6,6 +6,8 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {ProgramTab} from '../pages/programtab/programtab';
 import {PresentersPage} from '../pages/presenters-page/presenters-page';
 import {InvitedSpeakersPage} from '../pages/invitedspeakers-page/invitedspeakers-page';
+import {Network} from '@ionic-native/network';
+import {Toast} from '@ionic-native/toast';
 
 import {DatesService} from '../providers/dates-service';
 import {EventsService} from '../providers/events-service';
@@ -31,7 +33,7 @@ export class MyApp {
   presenters: any;
   chairs: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService, public locationsService: LocationsService, public papersService: PapersService, public presentersService: PresentersService, public speakersService: SpeakersService, public chairsService: ChairsService, public localNotifications: LocalNotifications) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public datesService: DatesService, public eventsService: EventsService, public locationsService: LocationsService, public papersService: PapersService, public presentersService: PresentersService, public speakersService: SpeakersService, public chairsService: ChairsService, public localNotifications: LocalNotifications, public network: Network, public toast: Toast) {
     this.initializeApp();
 
     this.rootPage = ProgramTab;
@@ -45,16 +47,21 @@ export class MyApp {
     this.notifications();
   }
 
-  getRootNav() {
-    return this.nav;
-  }
-
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.network.onDisconnect().subscribe(() => {
+        this.toast.show('Device disconnected from the network', '5000', 'bottom').subscribe(
+          toast => {
+            setTimeout(() => {
+              this.platform.exitApp();
+            }, 5000);
+          }
+        );
+      });
     });
   }
 

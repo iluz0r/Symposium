@@ -15,6 +15,8 @@ import {InvitedSpeakersPage} from "../pages/invitedspeakers-page/invitedspeakers
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {LocalNotifications} from '@ionic-native/local-notifications';
+import {Network} from "@ionic-native/network";
+import {Toast} from '@ionic-native/toast';
 
 
 @NgModule({
@@ -48,6 +50,8 @@ import {LocalNotifications} from '@ionic-native/local-notifications';
     StatusBar,
     SplashScreen,
     LocalNotifications,
+    Network,
+    Toast,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
