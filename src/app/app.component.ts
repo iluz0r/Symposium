@@ -144,34 +144,36 @@ export class MyApp {
     let hours = Number(time.match(/^(\d+)/)[1]);
     let minutes = Number(time.match(/:(\d+)/)[1]);
     let AMPM = time.match(/\s(.*)$/)[1];
-    if(AMPM == "PM" && hours<12) hours = hours+12;
-    if(AMPM == "AM" && hours==12) hours = hours-12;
+    if (AMPM == "PM" && hours < 12) hours = hours + 12;
+    if (AMPM == "AM" && hours == 12) hours = hours - 12;
     let sHours = hours.toString();
     let sMinutes = minutes.toString();
-    if(hours<10) sHours = "0" + sHours;
-    if(minutes<10) sMinutes = "0" + sMinutes;
+    if (hours < 10) sHours = "0" + sHours;
+    if (minutes < 10) sMinutes = "0" + sMinutes;
     time = sHours + ':' + sMinutes + ':' + '00';
     return time;
   }
 
   setLocalNotifications() {
-    for(let ev of this.events) {
-      /*if(ev.type != '2') {*/
+    for (let ev of this.events) {
+      if (ev.type != '2') {
         let date = ev.date;
         let startTime = ev.startTime;
         let dateString = date + ' ' + this.convertFromAMPMTo24(startTime);
         let dateMillisec = new Date(Date.parse(dateString)).getTime();
+        let actualDate = new Date();
 
-        this.localNotifications.schedule({
-          id: 1,
-          title: ev.name,
-          text: 'Esempio di prima notifica',
-          sound: 'file://assets/sound/whistle.mp3',
-          badge: 1,
-          at: dateMillisec - 1*60*1000,
-          led: '0000FF',
-        });
+        if (actualDate.getTime() < new Date(dateMillisec - 15 * 60 * 1000).getTime()) {
+          this.localNotifications.schedule({
+            id: ev.ID,
+            title: 'Symposium',
+            text: ev.name + ' - starts at ' + new Date(dateMillisec).getHours() + ':' + new Date(dateMillisec).getMinutes(),
+            badge: 1,
+            at: dateMillisec - 15 * 60 * 1000,
+            led: '0000FF',
+          });
+        }
       }
     }
-  /*}*/
+  }
 }
