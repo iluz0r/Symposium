@@ -1,0 +1,40 @@
+about-page {
+  img {
+    float: left;
+    width: 135px;
+  }
+
+  .col {
+    display: flex;
+    align-items: center;
+  }
+
+  .grid {
+    margin-top: 10px;
+  }
+
+  .about-info ion-icon {
+    color: color($colors, primary);
+    width: 20px;
+  }
+
+  .ios .about-info {
+    text-align: center;
+  }
+
+  .ios .about-info ion-icon {
+    width: auto;
+    margin-right: 10px;
+  }
+
+  .right {
+    text-align: end;
+    white-space: inherit;
+  }
+
+  p {
+    color: #697072;
+    text-align: justify;
+  }
+
+}

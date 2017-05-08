@@ -1,13 +1,15 @@
 import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
-import {LocalNotifications} from '@ionic-native/local-notifications';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import {LocalNotifications} from '@ionic-native/local-notifications';
+import {Network} from '@ionic-native/network';
+import {Toast} from '@ionic-native/toast';
+
 import {ProgramTab} from '../pages/programtab/programtab';
 import {PresentersPage} from '../pages/presenters-page/presenters-page';
 import {InvitedSpeakersPage} from '../pages/invitedspeakers-page/invitedspeakers-page';
-import {Network} from '@ionic-native/network';
-import {Toast} from '@ionic-native/toast';
+import {AboutPage} from '../pages/about-page/about-page';
 
 import {DatesService} from '../providers/dates-service';
 import {EventsService} from '../providers/events-service';
@@ -40,7 +42,8 @@ export class MyApp {
     this.pages = [
       {title: 'Schedule', component: ProgramTab, icon: 'calendar'},
       {title: 'Presenters', component: PresentersPage, icon: 'contacts'},
-      {title: 'Invited Speakers', component: InvitedSpeakersPage, icon: 'microphone'}
+      {title: 'Invited Speakers', component: InvitedSpeakersPage, icon: 'microphone'},
+      {title: 'About', component: AboutPage, icon: 'information-circle'}
     ];
 
     this.loadData();
