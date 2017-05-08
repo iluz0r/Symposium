@@ -19,6 +19,11 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {LocalNotifications} from '@ionic-native/local-notifications';
 import {Network} from "@ionic-native/network";
 import {Toast} from '@ionic-native/toast';
+import {
+  GoogleMaps
+} from '@ionic-native/google-maps';
+
+
 
 
 @NgModule({
@@ -58,6 +63,7 @@ import {Toast} from '@ionic-native/toast';
     LocalNotifications,
     Network,
     Toast,
+    GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
