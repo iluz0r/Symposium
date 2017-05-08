@@ -1,14 +1,7 @@
 import {Component} from '@angular/core';
 import {NavParams} from 'ionic-angular';
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  LatLng,
-  CameraPosition,
-  MarkerOptions,
-  Marker
-} from '@ionic-native/google-maps';
+import {DomSanitizer} from '@angular/platform-browser';
+import {Platform} from 'ionic-angular';
 
 @Component({
   templateUrl: 'venue-page.html',
@@ -18,47 +11,24 @@ export class VenuePage {
 
   venues: any;
 
-  constructor(public googleMaps: GoogleMaps, public navParam: NavParams) {
+  constructor(public platform: Platform, public navParam: NavParams, public sanitizer: DomSanitizer) {
     this.venues = this.navParam.get("venues");
   }
 
-  ngAfterViewInit() {
-    this.loadMap();
+  sanitize(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
-  loadMap() {
-    // create a new map by passing HTMLElement
-    let element: HTMLElement = document.getElementById('map');
+  createGMapsURL(v) {
+    let queryParam = v.address.split(' ').join('+') + '+' + v.city.split(' ').join('+') + '+' + v.country.split(' ').join('+');
+    let header;
 
-    let map: GoogleMap = this.googleMaps.create(element);
-
-    // listen to MAP_READY event
-    // You must wait for this event to fire before adding something to the map or modifying it in anyway
-    map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
-
-    // create LatLng object
-    let ionic: LatLng = new LatLng(43.0741904,-89.3809802);
-
-    // create CameraPosition
-    let position: CameraPosition = {
-      target: ionic,
-      zoom: 18,
-      tilt: 30
-    };
-
-    // move the map's camera to position
-    map.moveCamera(position);
-
-    // create new marker
-    let markerOptions: MarkerOptions = {
-      position: ionic,
-      title: 'Ionic'
-    };
-
-    map.addMarker(markerOptions)
-      .then((marker: Marker) => {
-        marker.showInfoWindow();
-      });
+    if(this.platform.is('ios') || this.platform.is('iphone') || this.platform.is('ipad')) {
+      header = 'comgooglemaps://?q=';
+    } else {
+      header = 'geo://0,0?q=';
+    }
+    return this.sanitize(header + queryParam);
   }
 
 }
