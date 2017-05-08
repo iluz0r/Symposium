@@ -47,7 +47,6 @@ export class MyApp {
     ];
 
     this.loadData();
-    this.notifications();
   }
 
   initializeApp() {
@@ -130,6 +129,7 @@ export class MyApp {
   loadChairs() {
     this.chairsService.load().then(data => {
       this.chairs = data;
+      this.setLocalNotifications();
       this.nav.setRoot(ProgramTab, {
         programDates: this.dates,
         programEvents: this.events,
@@ -140,15 +140,38 @@ export class MyApp {
   }
 
 
-  notifications() {
-    this.localNotifications.schedule({
-      id: 1,
-      title: 'Hey, la prima notifica',
-      text: 'Esempio di prima notifica',
-      sound: 'file://assets/sound/whistle.mp3',
-      badge: 1,
-      data: new Date(new Date().getTime() + 60),
-      led: '0000FF',
-    });
+  convertFromAMPMTo24(time) {
+    let hours = Number(time.match(/^(\d+)/)[1]);
+    let minutes = Number(time.match(/:(\d+)/)[1]);
+    let AMPM = time.match(/\s(.*)$/)[1];
+    if(AMPM == "PM" && hours<12) hours = hours+12;
+    if(AMPM == "AM" && hours==12) hours = hours-12;
+    let sHours = hours.toString();
+    let sMinutes = minutes.toString();
+    if(hours<10) sHours = "0" + sHours;
+    if(minutes<10) sMinutes = "0" + sMinutes;
+    time = sHours + ':' + sMinutes + ':' + '00';
+    return time;
   }
+
+  setLocalNotifications() {
+    for(let ev of this.events) {
+      /*if(ev.type != '2') {*/
+        let date = ev.date;
+        let startTime = ev.startTime;
+        let dateString = date + ' ' + this.convertFromAMPMTo24(startTime);
+        let dateMillisec = new Date(Date.parse(dateString)).getTime();
+
+        this.localNotifications.schedule({
+          id: 1,
+          title: ev.name,
+          text: 'Esempio di prima notifica',
+          sound: 'file://assets/sound/whistle.mp3',
+          badge: 1,
+          at: dateMillisec - 1*60*1000,
+          led: '0000FF',
+        });
+      }
+    }
+  /*}*/
 }
