@@ -4,7 +4,7 @@ import {AuthorsService} from '../../providers/authors-service';
 import{PresenterInfoPage} from '../presenterinfo-page/presenterinfo-page';
 
 @Component({
-  selector: 'page-paperinfo',
+  selector: 'paperinfo-page',
   templateUrl: 'paperinfo-page.html',
   providers: [AuthorsService]
 })

@@ -3,7 +3,7 @@ import {NavParams} from 'ionic-angular';
 import {ProgramPage} from '../program-page/program-page';
 
 @Component({
-  selector: 'page-programtab',
+  selector: 'programtab-page',
   templateUrl: 'programtab.html',
 })
 export class ProgramTab {

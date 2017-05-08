@@ -5,7 +5,7 @@ import {SubjectAreasService} from '../../providers/subject-areas-service';
 import * as Confs from '../../app/app.conf';
 
 @Component({
-  selector: 'page-presenterinfo',
+  selector: 'presenterinfo-page',
   templateUrl: 'presenterinfo-page.html',
   providers: [AffiliationsService, SubjectAreasService]
 })

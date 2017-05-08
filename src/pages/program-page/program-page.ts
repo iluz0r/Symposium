@@ -4,7 +4,7 @@ import {PaperInfoPage} from '../paperinfo-page/paperinfo-page';
 import {PresenterInfoPage} from '../presenterinfo-page/presenterinfo-page';
 
 @Component({
-  selector: 'page-program',
+  selector: 'program-page',
   templateUrl: 'program-page.html',
 })
 export class ProgramPage {
