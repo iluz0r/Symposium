@@ -9,16 +9,15 @@
 
 <ion-content class="aligner">
   <ng-container *ngFor="let e of eventsArray">
-    <ion-item-divider sticky>
+    <ion-item-divider sticky class="start-time-divider">
       <ion-label>
         {{e.event.startTime}}
       </ion-label>
     </ion-item-divider>
-    <ion-card #card
-              [class]="e.event.type !== 2 ? card.className.split(' ')[0] + ' ' + card.className.split(' ')[1] + ' pres' : card.className">
+    <ion-card>
       <ion-card-content>
         <ion-grid>
-          <ion-row>
+          <ion-row [class]="'row type' + e.event.type">
             <ion-col col-3>
               <div id="outer">
                 <div id="innertime">
@@ -43,35 +42,26 @@
               </div>
             </ion-col>
           </ion-row>
+          <ion-row *ngIf="e.event.type!=2">
+            <ion-list no-lines>
+              <ng-container *ngFor="let paperInfo of e.papersInfo">
+                <ion-item (click)="openPaperInfoPage(paperInfo.paper)">
+                  <h2>{{paperInfo.paper.title}}</h2>
+                  <p>
+                    <ng-container *ngFor="let pres of paperInfo.presenters">
+                      <ng-container *ngIf="paperInfo.presenters.indexOf(pres) == paperInfo.presenters.length -1">
+                        <i>{{pres.firstName}} {{pres.lastName}}</i>
+                      </ng-container>
+                      <ng-container *ngIf="paperInfo.presenters.indexOf(pres) != paperInfo.presenters.length -1">
+                        <i>{{pres.firstName}} {{pres.lastName + ', '}}</i>
+                      </ng-container>
+                    </ng-container>
+                  </p>
+                </ion-item>
+              </ng-container>
+            </ion-list>
+          </ion-row>
         </ion-grid>
       </ion-card-content>
     </ion-card>
-    <ng-container>
-      <ion-card>
-        <ion-card-content #paperCard
-                          [class]="paperCard.className.split(' ')[0] + ' ' + paperCard.className.split(' ')[1] + ' pap'">
-          <ion-grid>
-            <ion-row *ngFor="let paper of e.eventPapers" (click)="openPaperInfoPage(paper)">
-
-              <ion-col>
-                <ion-card-header text-wrap="">
-                  {{paper.title}}
-                </ion-card-header>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-    </ng-container>
   </ng-container>
-</ion-content>
-
-<!-- <p>{{e.event.startTime}}</p>
-<p>{{e.event.startTime}} - {{e.event.endTime}}</p>
-<p>{{e.event.name}}</p>
-<p>{{e.location.name}}</p>
-<ng-container *ngFor="let paperInfo of e.papersInfo">
-  <p>{{paperInfo.paper.title}}</p>
-  <ng-container *ngFor="let presenter of paperIinvitedSpeakersters">
-    <p>{{presenter.firstName}} {{presenter.lastName}}</p>
-    -->

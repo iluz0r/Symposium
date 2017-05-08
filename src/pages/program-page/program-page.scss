@@ -15,10 +15,6 @@ page-program {
     width: 100%;
   }
 
-  #innericon {
-    align-self: center;
-  }
-
   .card-title {
     font-size: 1.9rem;
     font-weight: 500;
@@ -30,35 +26,7 @@ page-program {
   }
 
   ion-label {
-    font-weight: 500;
-  }
-
-  .pres.card-md {
-    margin: 10px 10px -1px 10px;
-  }
-
-  .pres.card-ios {
-    margin: 12px 12px -1px 12px;
-  }
-
-  .card-header {
-    padding: 12px 0px 12px 0px;
-  }
-
-  .card-content-md.pap {
-    padding: 0px 0px 0px 0px;
-  }
-
-  .card-content-ios.pap {
-    padding: 0px 0px 0px 0px;
-  }
-
-  .card-content-md.pap, .card-header-md {
-    font-size: 1.5rem;
-  }
-
-  .card-content-ios.pap, .card-header-ios {
-    font-size: 1.5rem;
+    font-weight: 400;
   }
 
   .event-info p {
@@ -67,6 +35,33 @@ page-program {
 
   u {
     color: color($colors, primary);
+  }
+
+  .row.type1, .row.type0 {
+    margin-bottom: 20px;
+  }
+
+  .item-md, .item-ios {
+    background-color: white;
+    padding-left: 6px;
+
+  }
+
+  .item-md h2, .item-ios h2 {
+    white-space: initial;
+    text-align: justify;
+    font-weight: 500;
+    font-size: 1.4rem;
+  }
+
+  .start-time-divider {
+    background-color: #f7f7f7;
+  }
+
+  .item-md p, .item-ios p {
+    white-space: initial;
+    text-align: justify;
+    font-weight: 400;
   }
 
 }
